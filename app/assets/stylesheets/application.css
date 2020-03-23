@@ -1,0 +1,302 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+html {
+  box-sizing:border-box;
+  font-family:sans-serif;
+}
+body {
+  margin:0px;
+}
+a{
+  font-weight: lighter;
+}
+
+/* navbar */
+.navbar{
+  height:100px;
+  background-color:rgba(0, 0, 225, .2);
+  color:rgba(0, 0, 0, .8);
+ }
+#main_title{
+  margin-top:.75em;
+  margin-left: 5%;
+  display:inline-block;
+  color:rgba(0, 0, 120, .6);
+  text-decoration:underline;
+  font-size:2.1em;
+}
+.nav_links{
+  height:50%;
+  display:inline;
+  float:right;
+  margin-right:5%;
+  font-size:24px;
+  padding-top:1.2em;
+}
+.navbar a{
+  text-decoration: none;
+  color:rgba(0, 0, 0, .3);
+  font-size:1.1em;
+ }
+.navbar a:hover{
+  padding-top:.5em;
+  font-size:40px;
+  color:rgba(0, 0, 0, .5);
+ }
+
+/* pets index
+    shelter pets index*/
+h1{
+  width:auto;
+  text-align:center;
+  font-size:3em;
+}
+
+.pet_container{
+  height:20em;
+}
+.pet_container:hover{
+  background-color:rgba(0, 225, 225, .1)
+}
+.pet_img{
+  display:inline-block;
+  float:left;
+  width:33.3%;
+  height:100%;
+}
+.pet_img img{
+  width:auto;
+  height:100%;
+  border-radius: 0% 10% 10% 0%;
+  float:right;
+}
+.pet_info{
+  display:inline;
+  float:left;
+  width:33.3%;
+  height:100%;
+  text-align:center;
+  font-size:25px;
+}
+.pet_info a{
+  text-decoration:none;
+  color:rgba(0, 0, 0, .4);
+  width:fit-content;
+}
+.pet_info a:hover{
+  color:rgba(0, 0, 0, .7)
+}
+.pet_crud_links{
+  display:inline;
+  float:left;
+  width:33.3%;
+  height:100%;
+  text-align:center;
+  border-bottom: 1px solid rgba(0, 0, 255, .2)
+}
+.pet_crud_links p{
+  display:block;
+  margin-top:4.5em;
+}
+.pet_crud_links a{
+  color:rgba(0, 0, 0, .4);
+  font-size:25px;
+  text-decoration:none;
+}
+.pet_crud_links a:hover{
+  color:rgba(0, 0, 0, .7)
+}
+#create_pet_link a{
+  color:rgba(0, 0, 0, .4);
+  font-size:40px;
+  text-decoration:none;
+  margin-left:10%;
+}
+#create_pet_link a:hover{
+  color:rgba(0, 0, 0, .7);
+}
+
+/* update pet page
+    create pet page
+    update shelters
+    create shelters forms*/
+.field_container{
+  margin:5px;
+  font-size: 2em;
+  margin-top: 5%;
+}
+.submit_button{
+  text-align:center;
+  padding:50px;
+  background-color:rgba(0, 225, 225, .1);
+}
+.submit_button input{
+  float:none;
+  width:30%;
+  font-size: 30px;
+}
+.input_field{
+  border-bottom: 1px dotted rgba(0, 0, 255, .1);
+}
+.input_field input{
+  width:50%;
+  float:right;
+  font-size:20px;
+  margin-right:10%;
+  margin-top:6px;
+}
+.input_field label{
+  margin-left:10%;
+}
+
+/* pet show */
+.pet_show_container{
+  margin:2%;
+  background-color:rgba(0, 225, 225, .1);
+  border-radius: 10%;
+}
+.pet_show_img{
+  width:100%;
+  display:block;
+  text-align: center;
+}
+.pet_show_img img{
+  min-width:52%;
+  max-width:100%;
+  max-height: auto;
+  border-radius: 10%;
+}
+.pet_show_info{
+  float:left;
+  width:50%;
+  display:inline;
+  font-size:25px;
+  text-align:center;
+}
+.pet_show_links{
+  float:left;
+  width:50%;
+  height:100%;
+  display:inline;
+  text-align:center;
+}
+.pet_show_links p{
+  display:block;
+  margin-top:3em;
+}
+.pet_show_links a{
+  color:rgba(0, 0, 0, .4);
+  font-size:25px;
+  text-decoration:none;
+}
+.pet_show_links a:hover{
+  color:rgba(0, 0, 0, .7)
+}
+/* shelter index */
+#new_shelter_link{
+  margin-bottom:5em;
+}
+#new_shelter_link a{
+  color:rgba(0, 0, 0, .4);
+  font-size:40px;
+  text-decoration:none;
+  margin-left:10%;
+}
+#new_shelter_link a:hover{
+  color:rgba(0, 0, 0, .7);
+  width: 100%;
+}
+.shelters_list{
+  font-size:24px;
+}
+.shelter_name{
+  display:inline;
+  float:left;
+  width:60%;
+  height:4em;
+  text-align:center;
+}
+.shelter_name:hover{
+  background-color: rgba(0, 0, 225, .2);
+}
+.shelter_name a{
+  color:rgba(0, 0, 0, 1);
+  text-decoration: none;
+  text-align:center;
+}
+.shelter_name a:hover{
+  font-size:50px;
+}
+.shelter_name h2{
+  margin:0px;
+  margin-top:8px;
+}
+.shelter_links{
+  display:inline;
+  float:left;
+  width:40%;
+  height:4em;
+  border-bottom: 1px solid rgba(0, 255, 255, .2);
+}
+.shelter_links a{
+  display:block;
+  text-decoration: none;
+  color:rgba(0, 0, 0, .4);
+  padding:.33em 0;
+  padding-left: 3%;
+}
+.shelter_links a:hover{
+  color:rgba(0, 0, 0, .7)
+}
+
+/* shelter show page */
+.shelter_show_address {
+  text-align: center;
+  font-size:28px;
+  margin-bottom:1em;
+}
+.shelter_show_address p{
+  margin:5px 0px;
+}
+.shelters_pets_link{
+  margin-bottom:3em;
+}
+.shelters_pets_link a{
+  color:rgba(0, 0, 0, .4);
+  font-size:30px;
+  text-decoration:none;
+  margin-left:10%;
+}
+.shelters_pets_link a:hover{
+  color:rgba(0, 0, 0, .7);
+  width: 100%;
+}
+.shelter_show_links{
+  width:100%;
+  height:4em;
+  border-bottom: 1px solid rgba(0, 255, 255, .2);
+  text-align:center;
+}
+.shelter_show_links a{
+  text-decoration: none;
+  color:rgba(0, 0, 0, .4);
+  margin-top:1em;
+  font-size:24px;
+  padding:1em;
+}
+.shelter_show_links a:hover{
+  color:rgba(0, 0, 0, .7)
+}
