@@ -1,10 +1,9 @@
 class Shelter < ApplicationRecord
   validates_presence_of :name, :address, :city, :state, :zip
   has_many :pets
+  has_many :reviews
 
   def adoptable_pets
-    pets.find_all do |pet|
-      pet[:adoptable]
-    end
+    pets.where(adoptable:true)
   end
 end
