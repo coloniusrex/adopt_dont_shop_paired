@@ -1,0 +1,3 @@
+class ShelterReviewsController < ApplicationController
+  
+end

@@ -12,6 +12,7 @@
   <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete -%>
 
 </section>
+<%= link_to "Create Review", "/shelters/#{@shelter.id}/reviews/new" %>
 <section class="reviews_list">
   <% @shelter.reviews.each do |review| %>
     <section id="review_<%= review.id %>">
