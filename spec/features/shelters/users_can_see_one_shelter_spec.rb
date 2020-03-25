@@ -139,29 +139,30 @@ RSpec.describe 'As a user the shelter show page', type: :feature do
     end
   end
 
-  it "I can click on a link besides each review to take me to the edit review page" do
+  it "I can click on a link beside each review to take me to the edit review page" do
     shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
                                address: "580 McIntyre St",
                                city:    "Golden",
                                state:   "CO",
                                zip:     "80401")
     review_1 = shelter_1.reviews.create(title: 'Title1', rating: 4, content: 'Content1')
-    # review_2 = shelter_1.reviews.create(title: 'Title2', rating: 5, content: 'Content2',
-    #   image_url: 'https://i.kym-cdn.com/photos/images/facebook/001/471/040/2aa.jpeg')
+    review_2 = shelter_1.reviews.create(title: 'Title2', rating: 5, content: 'Content2',
+      image_url: 'https://i.kym-cdn.com/photos/images/facebook/001/471/040/2aa.jpeg')
 
     visit "/shelters/#{shelter_1.id}"
 
     within('.reviews_list') do
-      expect(page).to have_link('Edit Review')
-      expect(page).to have_selector(:css, "a[href='#{review_1}']")
-      # expect(page).to have_selector(:css, "a[href='#{review_2}']")
+      within("#review_#{review_1.id}") do
+        expect(page).to have_link('Edit Review')
+      end
+      within("#review_#{review_2.id}") do
+        expect(page).to have_link('Edit Review')
+      end
+      within("#review_#{review_1.id}") do
+        click_link('Edit Review')
+      end
     end
 
-    click_on ('Edit Review')
-    # click_link('id-of-link')
-
     expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/edit")
-
-  
   end
 end
