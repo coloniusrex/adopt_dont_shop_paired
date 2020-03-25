@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post '/shelters/:shelter_id/pets', to: 'shelter_pets#create'
   #shelter_review
   get '/shelters/:shelter_id/reviews/new', to: 'shelter_reviews#new'
+  post '/shelters/:shelter_id/reviews', to: 'shelter_reviews#create'
   #landing page
   get '/', to: 'welcome#index'
 

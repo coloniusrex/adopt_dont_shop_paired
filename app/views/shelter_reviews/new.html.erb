@@ -1,0 +1,31 @@
+<h1>New Shelter Review</h1>
+<%= form_tag "/shelters/#{@shelter.id}/reviews" do%>
+  <div class="field_container">
+    <div class="input_field">
+      <%= label_tag :title %>
+      <%= text_field_tag :title%>
+    </div>
+      <%= label_tag :rating %>
+      <%= radio_button_tag(:rating, 1) %>
+      <%= label_tag(:rating_1, "1") %>
+      <%= radio_button_tag(:rating, 2) %>
+      <%= label_tag(:rating_2, "2") %>
+      <%= radio_button_tag(:rating, 3) %>
+      <%= label_tag(:rating_3, "3") %>
+      <%= radio_button_tag(:rating, 4) %>
+      <%= label_tag(:rating_4, "4") %>
+      <%= radio_button_tag(:rating, 5) %>
+      <%= label_tag(:rating_5, "5") %>
+    <div class="input_field">
+      <%= label_tag :content %>
+      <%= text_area_tag :content,nil, size: "120x12"%>
+    </div>
+    <div class="input_field">
+      <%= label_tag :image_url %>
+      <%= text_field_tag :image_url %>
+    </div>
+    <div class="submit_button">
+      <%= submit_tag "Submit Review" %>
+    </div>
+  </div>
+<% end %>

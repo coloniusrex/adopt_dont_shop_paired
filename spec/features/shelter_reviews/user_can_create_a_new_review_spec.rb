@@ -8,11 +8,11 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
                                state:   "CO",
                                zip:     "80401")
 
-    visit "shelters/#{shelter_1.id}"
+    visit "/shelters/#{shelter_1.id}"
 
     click_link("Create Review")
 
-    expect(current_path).to eql("shelters/#{shelter_1.id}/reviews/new")
+    expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
     within('.field_container') do
       fill_in :title, with: "Title1"
       choose "rating_3"
@@ -20,7 +20,7 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
       fill_in :image_url, with: "https://knowyourmeme.com/photos/1471040"
       click_button ('Submit Review')
     end
-    expect(current_path).to eql("shelters/#{shelter_1.id}")
+    expect(current_path).to eql("/shelters/#{shelter_1.id}")
 
     review = shelter_1.reviews.last
 
@@ -30,6 +30,6 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
       expect(page).to have_content(review.content)
       expect(page.find("img")["src"]).to eql(review.image_url)
     end
-    
+
   end
 end
