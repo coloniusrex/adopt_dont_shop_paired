@@ -32,7 +32,7 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
     end
   end
 
-  it "If I incorrectly fill out the form, I see a flash message and redirect to new_review page" do
+  it "If I incorrectly fill out the new_review form, I see a flash message and redirect to new_review page" do
     shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
                                address: "580 McIntyre St",
                                city:    "Golden",

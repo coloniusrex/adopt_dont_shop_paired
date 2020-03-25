@@ -162,20 +162,6 @@ RSpec.describe 'As a user the shelter show page', type: :feature do
 
     expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/edit")
 
-    within('.edit_review_form') do
-      fill_in :title, with: 'Humane Society of Utah'
-      fill_in :rating, with: 5
-      fill_in :content, with:
-      fill_in :image_url, with:
-      click_button('Submit Update')
-    end
-
-    expect(current_path).to eql("/shelters/#{shelter_1.id}")
-    within('.reviews_list') do
-      expect(page).to have_content("Humane Society of Utah")
-      expect(page).to have_content(5)
-      expect(page).to_not have_content("Title1")
-      expect(page).to_not have_content(4)
-    end
+  
   end
 end
