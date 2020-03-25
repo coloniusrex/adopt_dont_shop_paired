@@ -48,31 +48,6 @@ RSpec.describe "As a user on the shelter_review edit page", type: :feature do
     end
   end
 
-  it "If I incorrectly fill out the edit_review form, I see a flash message and redirect to new_review page" do
-    shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
-                               address: "580 McIntyre St",
-                               city:    "Golden",
-                               state:   "CO",
-                               zip:     "80401")
-    review_1 = shelter_1.reviews.create(title: 'Title1',
-                                       rating: 4,
-                                      content: 'Content1')
-
-    visit "/shelters/#{shelter_1.id}/reviews/#{review_1.id}/edit"
-
-    within('.field_container') do
-      fill_in :title, with: ''
-      fill_in :rating, with: 5
-      fill_in :content, with: 'Juicy content.'
-      fill_in :image_url, with: 'www.this.is/your/url'
-      click_button('Submit Update')
-    end
-    expect(page).to have_content("")
-    expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/#{review_1.id}/edit")
-  end
-
-
-
   it "I can fill out the form incorrectly then I see a flash message and redirect to edit form" do
     shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
                                address: "580 McIntyre St",
@@ -81,9 +56,7 @@ RSpec.describe "As a user on the shelter_review edit page", type: :feature do
                                zip:     "80401")
     review_1 = shelter_1.reviews.create(title: 'Title1', rating: 4, content: 'Content1')
 
-    visit "/shelters/#{shelter_1.id}"
-
-    click_on ('Edit Review')
+    visit "/shelters/#{shelter_1.id}/reviews/#{review_1.id}/edit"
 
     within('.field_container') do
       fill_in :title, with: 'Humane Society of Utah'
