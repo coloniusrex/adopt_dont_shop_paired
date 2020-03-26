@@ -18,10 +18,10 @@ RSpec.describe 'As a user the shelter show page', type: :feature do
     within('#title') do
       expect(page).to have_content(shelter_1.name)
     end
-    within('.shelter_show_address p:first-child') do
+    within('.shelter-show-address p:first-child') do
       expect(page).to have_content("Address: #{shelter_1.address}")
     end
-    within('.shelter_show_address p:nth-child(2)') do
+    within('.shelter-show-address p:nth-child(2)') do
       expect(page).to have_content("#{shelter_1.city}, #{shelter_1.state} #{shelter_1.zip}")
     end
     expect(page).to have_no_content(shelter_2.name)
@@ -124,13 +124,13 @@ RSpec.describe 'As a user the shelter show page', type: :feature do
 
     visit "/shelters/#{shelter_1.id}"
 
-    within('.reviews_list') do
-      within("#review_#{review_1.id}") do
+    within('.reviews-list') do
+      within("#review-#{review_1.id}") do
         expect(page).to have_content(review_1.title)
         expect(page).to have_content(review_1.rating)
         expect(page).to have_content(review_1.content)
       end
-      within("#review_#{review_2.id}") do
+      within("#review-#{review_2.id}") do
         expect(page).to have_content(review_2.title)
         expect(page).to have_content(review_2.rating)
         expect(page).to have_content(review_2.content)
@@ -151,18 +151,18 @@ RSpec.describe 'As a user the shelter show page', type: :feature do
 
     visit "/shelters/#{shelter_1.id}"
 
-    within('.reviews_list') do
-      within("#review_#{review_1.id}") do
+    within('.reviews-list') do
+      within("#review-#{review_1.id}") do
         expect(page).to have_link('Edit Review')
       end
-      within("#review_#{review_2.id}") do
+      within("#review-#{review_2.id}") do
         expect(page).to have_link('Edit Review')
       end
-      within("#review_#{review_1.id}") do
+      within("#review-#{review_1.id}") do
         click_link('Edit Review')
       end
     end
 
-    expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/edit")
+    expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/#{review_1.id}/edit")
   end
 end

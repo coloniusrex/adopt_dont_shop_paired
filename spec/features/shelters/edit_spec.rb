@@ -10,7 +10,7 @@ RSpec.describe 'A a user o the update shelter page', type: :feature do
 
     visit "shelters/#{shelter.id}/edit"
 
-    within('.update_form') do
+    within('.update-form') do
       fill_in :name, with: "Updated Shelter Name"
       fill_in :address, with: "Updated Address"
       fill_in :city, with: "Updated City"
@@ -25,10 +25,10 @@ RSpec.describe 'A a user o the update shelter page', type: :feature do
     within('#title') do
       expect(page).to have_content(updated_shelter.name)
     end
-    within('.shelter_show_address p:first-child') do
+    within('.shelter-show-address p:first-child') do
       expect(page).to have_content("Address: #{updated_shelter.address}")
     end
-    within('.shelter_show_address p:nth-child(2)') do
+    within('.shelter-show-address p:nth-child(2)') do
       expect(page).to have_content("#{updated_shelter.city}, #{updated_shelter.state} #{updated_shelter.zip}")
     end
   end

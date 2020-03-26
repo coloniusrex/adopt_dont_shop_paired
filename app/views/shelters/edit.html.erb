@@ -1,28 +1,28 @@
 <h1>Update the Shelter Information:</h1>
-<section class="update_form">
+<section class="update-form">
   <%= form_tag "/shelters/#{@shelter.id}", method: :patch do %>
-    <div class="field_container">
-      <div class="input_field">
+    <div class="field-container">
+      <div class="input-field">
         <%= label_tag :name %>
         <%= text_field_tag :name, @shelter.name %>
       </div>
-      <div class="input_field">
+      <div class="input-field">
         <%= label_tag :address %>
         <%= text_field_tag :address, @shelter.address %>
       </div>
-      <div class="input_field">
+      <div class="input-field">
         <%= label_tag :city %>
         <%= text_field_tag :city, @shelter.city %>
       </div>
-      <div class="input_field">
+      <div class="input-field">
         <%= label_tag :state %>
         <%= text_field_tag :state, @shelter.state %>
       </div>
-      <div class="input_field">
+      <div class="input-field">
         <%= label_tag :zip %>
         <%= text_field_tag :zip, @shelter.zip %>
       </div>
-      <div class="submit_button">
+      <div class="submit-button">
         <%= submit_tag "Update Shelter" %>
       </div>
     </div>

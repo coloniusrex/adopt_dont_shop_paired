@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   #shelter_review
   get '/shelters/:shelter_id/reviews/new', to: 'shelter_reviews#new'
   post '/shelters/:shelter_id/reviews', to: 'shelter_reviews#create'
+  get '/shelters/:shelter_id/reviews/:review_id/edit', to: 'shelter_reviews#edit'
+  patch '/shelters/:shelter_id/reviews/:review_id', to: 'shelter_reviews#update'
+  delete '/shelters/:shelter_id/reviews/:review_id/delete', to: 'shelter_reviews#destroy'
   #landing page
   get '/', to: 'welcome#index'
 

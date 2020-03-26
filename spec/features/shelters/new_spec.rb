@@ -4,7 +4,7 @@ RSpec.describe 'As a user on the new shelter form page', type: :feature do
   it 'I can create a new shelter' do
     visit '/shelters/new'
 
-    within('.new_shelter_form') do
+    within('.new-shelter-form') do
       fill_in :name, with: 'Humane Society of Utah'
       fill_in :address, with: '4242 S 300 W'
       fill_in :city, with: 'Murray'

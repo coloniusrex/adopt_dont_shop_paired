@@ -13,7 +13,7 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
     click_link("Create Review")
 
     expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
-    within('.field_container') do
+    within('.field-container') do
       fill_in :title, with: "Title1"
       choose "rating_3"
       fill_in :content, with: "Some content for shits and giggles"
@@ -24,7 +24,7 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
 
     review = shelter_1.reviews.last
 
-    within("#review_#{review.id}") do
+    within("#review-#{review.id}") do
       expect(page).to have_content(review.title)
       expect(page).to have_content(review.rating)
       expect(page).to have_content(review.content)
@@ -41,7 +41,7 @@ RSpec.describe "As a user on the new shelter_review page", type: :feature do
 
     visit "/shelters/#{shelter_1.id}/reviews/new"
 
-    within('.field_container') do
+    within('.field-container') do
       fill_in :title, with: "Title1"
       fill_in :content, with: "Some content for shits and giggles"
       fill_in :image_url, with: "https://knowyourmeme.com/photos/1471040"

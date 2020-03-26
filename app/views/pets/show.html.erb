@@ -1,16 +1,16 @@
 <h1><%= @pet.name %></h1>
-<section class="pet_show_container">
-  <div class="pet_show_info">
+<section class="pet-show-container">
+  <div class="pet-show-info">
     <p><%=  @pet.description %></p>
     <p><%=  @pet.approximate_age %></p>
     <p><%=  @pet.sex %></p>
     <p><%=  @pet.name %> is <%= @pet.adoption_status %></p>
   </div>
-  <div class="pet_show_links">
+  <div class="pet-show-links">
     <p><%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %></p>
     <p><%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %></p>
   </div>
-  <div class="pet_show_img">
+  <div class="pet-show-img">
     <%= image_tag @pet.image_url, id: "petimg-#{@pet.id}" %>
   </div>
 </section>

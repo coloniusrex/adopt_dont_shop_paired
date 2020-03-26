@@ -24,8 +24,8 @@ RSpec.describe "As a user on the new pet page", type: :feature do
     new_pet = shelter_1.pets.last
 
     expect(current_path).to eql("/shelters/#{shelter_1.id}/pets")
-    within(".pets_list") do
-      within("#pet_list_item_#{new_pet.id}") do
+    within(".pets-list") do
+      within("#pet-list-item-#{new_pet.id}") do
         expect(find("img")["src"]).to eql(new_pet.image_url)
         expect(page).to have_content(new_pet.name)
         expect(page).to have_content(new_pet.approximate_age)
