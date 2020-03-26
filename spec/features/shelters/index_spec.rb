@@ -15,10 +15,10 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
 
     visit '/shelters'
 
-    within("#shelter_list_item_#{shelter_1.id}") do
+    within("#shelter-list-item-#{shelter_1.id}") do
       expect(page).to have_content(shelter_1.name)
     end
-    within("#shelter_list_item_#{shelter_2.id}") do
+    within("#shelter-list-item-#{shelter_2.id}") do
       expect(page).to have_content(shelter_2.name)
     end
 
@@ -46,7 +46,7 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
 
     visit "/shelters"
 
-    within("#shelter_list_item_#{shelter_1.id}") do
+    within("#shelter-list-item-#{shelter_1.id}") do
       click_link('Update Shelter')
 
       expect(current_path).to eql("/shelters/#{shelter_1.id}/edit")
@@ -54,7 +54,7 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
 
     visit '/shelters'
 
-    within("#shelter_list_item_#{shelter_2.id}") do
+    within("#shelter-list-item-#{shelter_2.id}") do
       click_link('Update Shelter')
 
       expect(current_path).to eql("/shelters/#{shelter_2.id}/edit")
@@ -75,17 +75,17 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
 
     visit "/shelters"
 
-    within(".shelters_list") do
-      within("#shelter_list_item_#{shelter_2.id}") do
+    within(".shelters-list") do
+      within("#shelter-list-item-#{shelter_2.id}") do
         expect(page).to have_link('Delete Shelter')
       end
 
-      within("#shelter_list_item_#{shelter_1.id}") do
+      within("#shelter-list-item-#{shelter_1.id}") do
         click_on("Delete Shelter")
       end
 
-      expect(page).to have_no_css("#shelter_list_item_#{shelter_1.id}")
-      expect(page).to have_css("#shelter_list_item_#{shelter_2.id}")
+      expect(page).to have_no_css("#shelter-list-item-#{shelter_1.id}")
+      expect(page).to have_css("#shelter-list-item-#{shelter_2.id}")
     end
 
     expect(Shelter.exists?(shelter_1.id)).to eql(false)
@@ -100,8 +100,8 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
 
     visit "/shelters"
 
-    within(".shelters_list") do
-      within("#shelter_list_item_#{shelter_1.id}") do
+    within(".shelters-list") do
+      within("#shelter-list-item-#{shelter_1.id}") do
         click_link(shelter_1.name)
       end
     end

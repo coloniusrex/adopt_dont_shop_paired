@@ -8,19 +8,19 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
+  <% flash.each do |type, message| %>
+      <p><%= message %></p>
+  <% end %>
+
   <body>
   <div class="navbar">
-    <h1 id="main_title">Adopt Don't Shop</h1>
-    <div class="nav_links">
+    <h1 id="main-title">Adopt Don't Shop</h1>
+    <div class="nav-links">
       <%= link_to "Pets Index", "/pets" %>
       |
       <%= link_to "Shelters Index", "/shelters" %>
     </div>
   </div>
-  <% flash.each do |type, message| %>
-      <p><%= message %></p>
-    <% end %>
-    
     <%= yield %>
   </body>
 </html>

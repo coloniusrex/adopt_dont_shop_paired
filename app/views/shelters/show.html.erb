@@ -1,27 +1,31 @@
 <h1 id='title'><%= @shelter.name %></h1>
-<div class="shelters_pets_link">
+<div class="shelters-pets-link">
   <%= link_to "Shelter's Pets", "/shelters/#{@shelter.id}/pets" %>
 </div>
 
-<section class='shelter_show_address'>
+<section class='shelter-show-address'>
   <p>Address: <%= @shelter.address %></p>
   <p><%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip %></p>
 </section>
-<section class="shelter_show_links">
+<section class="shelter-show-links">
   <a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a>
   <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete -%>
 
 </section>
 <%= link_to "Create Review", "/shelters/#{@shelter.id}/reviews/new" %>
-<section class="reviews_list">
+<section class="reviews-list">
   <% @shelter.reviews.each do |review| %>
-    <section id="review_<%= review.id %>">
+    <section id="review-<%= review.id %>">
       <p><%= review.title %></p>
       <p><%= review.rating %></p>
       <p><%= review.content %></p>
       <% unless review.image_url == nil %>
         <%= image_tag review.image_url %>
       <% end %>
+      <section class="review-links">
+        <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
+        <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/delete", method: :delete %>
+      </section>
     </section>
   <% end %>
 </section>

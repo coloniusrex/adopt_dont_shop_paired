@@ -12,6 +12,25 @@ class ShelterReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:review_id])
+  end
+
+  def update
+    if Review.update(params[:review_id], review_params).valid?
+      Review.update(params[:review_id], review_params)
+      redirect_to "/shelters/#{params[:shelter_id]}"
+    else
+      flash[:notice] = "Oopsie Daisy! Review Not Created: Required Information Missing (Title, Rating or Content Missing!)"
+      redirect_to "/shelters/#{params[:shelter_id]}/reviews/#{params[:review_id]}/edit"
+    end
+  end
+
+  def destroy
+    Review.destroy(params[:review_id])
+    redirect_to "/shelters/#{params[:shelter_id]}"
+  end
+
   private
 
   def review_params

@@ -21,15 +21,15 @@ RSpec.describe "As a user on the pets index page", type: :feature do
                                    adoptable:       false)
 
     visit "/pets"
-    within(".pets_list") do
-      within("#pet_list_item_#{pet_1.id}") do
+    within(".pets-list") do
+      within("#pet-list-item-#{pet_1.id}") do
         expect(find('img')['src']).to eql(pet_1.image_url)
         expect(page).to have_content(pet_1.description)
         expect(page).to have_content(pet_1.approximate_age)
         expect(page).to have_content(pet_1.sex)
         expect(page).to have_content(pet_1.shelter.name)
       end
-      within("#pet_list_item_#{pet_2.id}") do
+      within("#pet-list-item-#{pet_2.id}") do
         expect(find('img')['src']).to eql(pet_2.image_url)
         expect(page).to have_content(pet_2.name)
         expect(page).to have_content(pet_2.description)
@@ -61,13 +61,13 @@ RSpec.describe "As a user on the pets index page", type: :feature do
 
     visit '/pets'
 
-    within("#pet_list_item_#{pet_1.id}") do
+    within("#pet-list-item-#{pet_1.id}") do
       expect(page).to have_link("Update Pet")
     end
-    within("#pet_list_item_#{pet_2.id}") do
+    within("#pet-list-item-#{pet_2.id}") do
       expect(page).to have_link("Update Pet")
     end
-    within("#pet_list_item_#{pet_1.id}") do
+    within("#pet-list-item-#{pet_1.id}") do
       click_link("Update Pet")
     end
 
@@ -95,23 +95,23 @@ RSpec.describe "As a user on the pets index page", type: :feature do
 
     visit '/pets'
 
-    within(".pets_list") do
-      within("#pet_list_item_#{pet_1.id}") do
+    within(".pets-list") do
+      within("#pet-list-item-#{pet_1.id}") do
         expect(page).to have_link("Delete Pet")
       end
-      within("#pet_list_item_#{pet_2.id}") do
+      within("#pet-list-item-#{pet_2.id}") do
         expect(page).to have_link("Delete Pet")
       end
-      within("#pet_list_item_#{pet_1.id}") do
+      within("#pet-list-item-#{pet_1.id}") do
         click_link("Delete Pet")
       end
     end
 
     expect(current_path).to eql("/pets")
 
-    within(".pets_list") do
-      expect(page).to have_css("#pet_list_item_#{pet_2.id}")
-      expect(page).to have_no_css("#pet_list_item_#{pet_1.id}")
+    within(".pets-list") do
+      expect(page).to have_css("#pet-list-item-#{pet_2.id}")
+      expect(page).to have_no_css("#pet-list-item-#{pet_1.id}")
     end
 
     expect(Pet.exists?(pet_1.id)).to eql(false)
@@ -132,8 +132,8 @@ RSpec.describe "As a user on the pets index page", type: :feature do
 
     visit "/pets"
 
-    within(".pets_list") do
-      within("#pet_list_item_#{pet_1.id}") do
+    within(".pets-list") do
+      within("#pet-list-item-#{pet_1.id}") do
         click_link(pet_1.shelter.name)
       end
     end
@@ -156,8 +156,8 @@ RSpec.describe "As a user on the pets index page", type: :feature do
 
     visit "/pets"
 
-    within(".pets_list") do
-      within("#pet_list_item_#{pet_1.id}") do
+    within(".pets-list") do
+      within("#pet-list-item-#{pet_1.id}") do
         click_link(pet_1.name)
       end
     end

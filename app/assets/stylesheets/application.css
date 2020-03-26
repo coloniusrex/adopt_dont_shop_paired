@@ -30,7 +30,7 @@ a{
   background-color:rgba(0, 0, 225, .2);
   color:rgba(0, 0, 0, .8);
  }
-#main_title{
+#main-title{
   margin-top:.75em;
   margin-left: 5%;
   display:inline-block;
@@ -38,7 +38,7 @@ a{
   text-decoration:underline;
   font-size:2.1em;
 }
-.nav_links{
+.nav-links{
   height:50%;
   display:inline;
   float:right;
@@ -65,25 +65,25 @@ h1{
   font-size:3em;
 }
 
-.pet_container{
+.pet-container{
   height:20em;
 }
-.pet_container:hover{
+.pet-container:hover{
   background-color:rgba(0, 225, 225, .1)
 }
-.pet_img{
+.pet-img{
   display:inline-block;
   float:left;
   width:33.3%;
   height:100%;
 }
-.pet_img img{
+.pet-img img{
   width:auto;
   height:100%;
   border-radius: 0% 10% 10% 0%;
   float:right;
 }
-.pet_info{
+.pet-info{
   display:inline;
   float:left;
   width:33.3%;
@@ -91,15 +91,15 @@ h1{
   text-align:center;
   font-size:25px;
 }
-.pet_info a{
+.pet-info a{
   text-decoration:none;
   color:rgba(0, 0, 0, .4);
   width:fit-content;
 }
-.pet_info a:hover{
+.pet-info a:hover{
   color:rgba(0, 0, 0, .7)
 }
-.pet_crud_links{
+.pet-crud-links{
   display:inline;
   float:left;
   width:33.3%;
@@ -107,25 +107,25 @@ h1{
   text-align:center;
   border-bottom: 1px solid rgba(0, 0, 255, .2)
 }
-.pet_crud_links p{
+.pet-crud-links p{
   display:block;
   margin-top:4.5em;
 }
-.pet_crud_links a{
+.pet-crud-links a{
   color:rgba(0, 0, 0, .4);
   font-size:25px;
   text-decoration:none;
 }
-.pet_crud_links a:hover{
+.pet-crud-links a:hover{
   color:rgba(0, 0, 0, .7)
 }
-#create_pet_link a{
+#create-pet-link a{
   color:rgba(0, 0, 0, .4);
   font-size:40px;
   text-decoration:none;
   margin-left:10%;
 }
-#create_pet_link a:hover{
+#create-pet-link a:hover{
   color:rgba(0, 0, 0, .7);
 }
 
@@ -133,170 +133,170 @@ h1{
     create pet page
     update shelters
     create shelters forms*/
-.field_container{
+.field-container{
   margin:5px;
   font-size: 2em;
   margin-top: 5%;
 }
-.submit_button{
+.submit-button{
   text-align:center;
   padding:50px;
   background-color:rgba(0, 225, 225, .1);
 }
-.submit_button input{
+.submit-button input{
   float:none;
   width:30%;
   font-size: 30px;
 }
-.input_field{
+.input-field{
   border-bottom: 1px dotted rgba(0, 0, 255, .1);
 }
-.input_field input{
+.input-field input{
   width:50%;
   float:right;
   font-size:20px;
   margin-right:10%;
   margin-top:6px;
 }
-.input_field label{
+.input-field label{
   margin-left:10%;
 }
 
 /* pet show */
-.pet_show_container{
+.pet-show-container{
   margin:2%;
   background-color:rgba(0, 225, 225, .1);
   border-radius: 10%;
 }
-.pet_show_img{
+.pet-show-img{
   width:100%;
   display:block;
   text-align: center;
 }
-.pet_show_img img{
+.pet-show-img img{
   min-width:52%;
   max-width:100%;
   max-height: auto;
   border-radius: 10%;
 }
-.pet_show_info{
+.pet-show-info{
   float:left;
   width:50%;
   display:inline;
   font-size:25px;
   text-align:center;
 }
-.pet_show_links{
+.pet-show-links{
   float:left;
   width:50%;
   height:100%;
   display:inline;
   text-align:center;
 }
-.pet_show_links p{
+.pet-show-links p{
   display:block;
   margin-top:3em;
 }
-.pet_show_links a{
+.pet-show-links a{
   color:rgba(0, 0, 0, .4);
   font-size:25px;
   text-decoration:none;
 }
-.pet_show_links a:hover{
+.pet-show-links a:hover{
   color:rgba(0, 0, 0, .7)
 }
 /* shelter index */
-#new_shelter_link{
+#new-shelter-link{
   margin-bottom:5em;
 }
-#new_shelter_link a{
+#new-shelter-link a{
   color:rgba(0, 0, 0, .4);
   font-size:40px;
   text-decoration:none;
   margin-left:10%;
 }
-#new_shelter_link a:hover{
+#new-shelter-link a:hover{
   color:rgba(0, 0, 0, .7);
   width: 100%;
 }
-.shelters_list{
+.shelters-list{
   font-size:24px;
 }
-.shelter_name{
+.shelter-name{
   display:inline;
   float:left;
   width:60%;
   height:4em;
   text-align:center;
 }
-.shelter_name:hover{
+.shelter-name:hover{
   background-color: rgba(0, 0, 225, .2);
 }
-.shelter_name a{
+.shelter-name a{
   color:rgba(0, 0, 0, 1);
   text-decoration: none;
   text-align:center;
 }
-.shelter_name a:hover{
+.shelter-name a:hover{
   font-size:50px;
 }
-.shelter_name h2{
+.shelter-name h2{
   margin:0px;
   margin-top:8px;
 }
-.shelter_links{
+.shelter-links{
   display:inline;
   float:left;
   width:40%;
   height:4em;
   border-bottom: 1px solid rgba(0, 255, 255, .2);
 }
-.shelter_links a{
+.shelter-links a{
   display:block;
   text-decoration: none;
   color:rgba(0, 0, 0, .4);
   padding:.33em 0;
   padding-left: 3%;
 }
-.shelter_links a:hover{
+.shelter-links a:hover{
   color:rgba(0, 0, 0, .7)
 }
 
 /* shelter show page */
-.shelter_show_address {
+.shelter-show-address {
   text-align: center;
   font-size:28px;
   margin-bottom:1em;
 }
-.shelter_show_address p{
+.shelter-show-address p{
   margin:5px 0px;
 }
-.shelters_pets_link{
+.shelters-pets-link{
   margin-bottom:3em;
 }
-.shelters_pets_link a{
+.shelters-pets-link a{
   color:rgba(0, 0, 0, .4);
   font-size:30px;
   text-decoration:none;
   margin-left:10%;
 }
-.shelters_pets_link a:hover{
+.shelters-pets-link a:hover{
   color:rgba(0, 0, 0, .7);
   width: 100%;
 }
-.shelter_show_links{
+.shelter-show-links{
   width:100%;
   height:4em;
   border-bottom: 1px solid rgba(0, 255, 255, .2);
   text-align:center;
 }
-.shelter_show_links a{
+.shelter-show-links a{
   text-decoration: none;
   color:rgba(0, 0, 0, .4);
   margin-top:1em;
   font-size:24px;
   padding:1em;
 }
-.shelter_show_links a:hover{
+.shelter-show-links a:hover{
   color:rgba(0, 0, 0, .7)
 }
