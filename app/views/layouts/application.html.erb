@@ -14,17 +14,15 @@
 
   <body>
   <div class="navbar">
-    <!-- Session index below will fail tests, runs on local-->
-    <% session[:index].each do |object| %>
-      <%= object %>
-    <% end %>
-    <!-- THIS IS TO SERVE AS A REMINDER TO FIX TESTS OR GET ME OUT-->
     <h1 id="main-title">Adopt Don't Shop</h1>
     <div class="nav-links">
       <%= link_to "Pets Index", "/pets" %>
       |
       <%= link_to "Shelters Index", "/shelters" %>
     </div>
+    <section class="favorites-counter">
+      <p>Favorites: <%= favorite.count %></p>
+    </section>
   </div>
     <%= yield %>
   </body>

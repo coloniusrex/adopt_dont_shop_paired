@@ -168,7 +168,7 @@ And I should no longer see that shelter review
 Users will be able to favorite a pet and keep track of pet's they're interested in
 
 ```
-[ ] done
+[x] done
 
 User Story 8, Favorite Indicator
 
