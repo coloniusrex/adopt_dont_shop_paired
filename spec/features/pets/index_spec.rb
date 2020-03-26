@@ -184,4 +184,5 @@ RSpec.describe "As a user on the pets index page", type: :feature do
 
     expect(current_path).to eql("/shelters")
   end
+
 end

@@ -20,6 +20,9 @@
       |
       <%= link_to "Shelters Index", "/shelters" %>
     </div>
+    <section class="favorites-counter">
+      <p>Favorites: <%= favorite.count %></p>
+    </section>
   </div>
     <%= yield %>
   </body>
