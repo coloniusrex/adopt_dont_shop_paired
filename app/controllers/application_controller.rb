@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   helper_method :favorites_list
 
   def favorites_list
-    return session[:favorites_list] unless session[:favorites_list].nil?
-    []
+    @list ||= FavoritesList.new(session[:favorites_list])
   end
 end
