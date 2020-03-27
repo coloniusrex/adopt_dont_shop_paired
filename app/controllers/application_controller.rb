@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :favorite
+  helper_method :favorites_list
 
-  def favorite
-    return session[:favorites_list] unless session[:favorites_list].nil?
-    []
+  def favorites_list
+    @list ||= FavoritesList.new(session[:favorites_list])
   end
 end
