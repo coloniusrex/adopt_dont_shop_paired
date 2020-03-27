@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   delete '/shelters/:shelter_id/reviews/:review_id/delete', to: 'shelter_reviews#destroy'
   #landing page
   get '/', to: 'welcome#index'
+  #pets_favorites
+  patch '/pets/:pet_id/favorites', to: 'pets_favorites#update'
   #favorites
-  patch '/pets/:pet_id/favorites_list', to: 'favorites_list#update'
+  get '/favorites', to: 'favorites#index'
 
 end

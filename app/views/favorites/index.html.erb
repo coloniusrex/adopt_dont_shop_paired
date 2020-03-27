@@ -1,0 +1,8 @@
+<section class="list">
+  <% @favorite_pets.each do |pet| %>
+    <section id="favorite-<%= pet.id %>">
+      <%= link_to pet.name, "/pets/#{pet.id}" %>
+      <%= image_tag pet.image_url %>
+    </section>
+  <% end %>
+</section>
