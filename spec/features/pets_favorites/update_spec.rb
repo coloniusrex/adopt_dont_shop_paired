@@ -11,6 +11,17 @@ RSpec.describe "As a visitor", type: :feature do
     end
   end
 
+  it "When I click the favorites indicator in the nav bar I am taken to favorites index" do
+    visit '/shelters'
+
+    within('.navbar') do
+      within('.favorites_counter')
+      click_link 'Favorites:'
+    end
+
+    expect(current_path).to eql('/favorites')
+  end
+  
   describe "When I visit a pets show page" do
     it "I can click a button to add a pet to my favorites list" do
       shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
