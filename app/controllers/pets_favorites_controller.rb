@@ -1,4 +1,4 @@
-class FavoritesListController < ApplicationController
+class PetsFavoritesController < ApplicationController
   def update
     validate = !!favorites_list.add_pet(params[:pet_id])
     session[:favorites_list] = favorites_list.pets
