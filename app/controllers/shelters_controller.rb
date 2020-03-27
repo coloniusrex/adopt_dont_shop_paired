@@ -1,7 +1,6 @@
 class SheltersController < ApplicationController
   def index
     @shelters = Shelter.all
-    session[:index] = @shelters
   end
 
   def show
