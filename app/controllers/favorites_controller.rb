@@ -7,6 +7,6 @@ class FavoritesController < ApplicationController
     favorites_list.remove_id(params[:pet_id])
     session[:favorites_list] = favorites_list.pets
     flash[:notice] = "Successfully Removed Pet from Favorites"
-    redirect_to "/pets/#{params[:pet_id]}"
+    redirect_to request.referer
   end
 end
