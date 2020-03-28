@@ -7,7 +7,11 @@
     <p><%=  @pet.name %> is <%= @pet.adoption_status %></p>
   </div>
   <div class="pet-show-links">
-    <p><%= link_to "Favorite Pet", "/pets/#{@pet.id}/favorites", method: :patch %></p>
+    <% if favorites_list.valid?(@pet.id) %>
+      <p><%= link_to "Un-Favorite Pet", "/favorites/#{@pet.id}", method: :delete %></p>
+    <% else %>
+      <p><%= link_to "Favorite Pet", "/pets/#{@pet.id}/favorites", method: :patch %></p>
+    <% end %>
     <p><%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %></p>
     <p><%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %></p>
   </div>
