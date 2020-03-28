@@ -12,6 +12,8 @@ RSpec.describe Pet, type: :model do
 
   describe "relationships" do
     it {should belong_to :shelter}
+    it {should have_many :pet_adoption_apps}
+    it {should have_many(:adoption_apps).through(:pet_adoption_apps)}
   end
 
   describe "instance methods" do
