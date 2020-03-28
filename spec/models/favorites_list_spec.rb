@@ -100,5 +100,22 @@ RSpec.describe FavoritesList, type: :model do
 
       expect(list.empty?).to eql(false)
     end
+
+    it "can remove all pet ids" do
+      list = FavoritesList.new(nil)
+      pet_id1 = "1"
+      pet_id2 = "2"
+      pet_id3 = "3"
+
+      list.add_pet(pet_id1)
+      list.add_pet(pet_id2)
+      list.add_pet(pet_id3)
+
+      expect(list.pets).to eql([pet_id1, pet_id2, pet_id3])
+
+      list.remove_all
+      
+      expect(list.pets).to eql([])
+    end
   end
 end
