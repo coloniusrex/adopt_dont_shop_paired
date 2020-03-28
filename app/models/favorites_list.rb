@@ -15,4 +15,12 @@ class FavoritesList
   def pets_total
     pets.length
   end
+
+  def valid?(pet_id)
+    pets.include?(pet_id.to_s)
+  end
+
+  def remove_id(pet_id)
+    pets.delete(pet_id)
+  end
 end
