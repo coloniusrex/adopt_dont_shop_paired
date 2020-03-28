@@ -1,9 +1,13 @@
-<section class="list">
-  <% @favorite_pets.each do |pet| %>
-    <section id="favorite-<%= pet.id %>">
-      <%= link_to pet.name, "/pets/#{pet.id}" %>
-      <%= image_tag pet.image_url %>
-      <%= link_to "Un-Favorite Pet", "/favorites/#{pet.id}", method: :delete %>
-    </section>
-  <% end %>
-</section>
+<% if favorites_list.empty? %>
+  <h1>You have no favorite pets :(</h1>
+<% else %>
+  <section class="list">
+    <% @favorite_pets.each do |pet| %>
+      <section id="favorite-<%= pet.id %>">
+        <%= link_to pet.name, "/pets/#{pet.id}" %>
+        <%= image_tag pet.image_url %>
+        <%= link_to "Un-Favorite Pet", "/favorites/#{pet.id}", method: :delete %>
+      </section>
+    <% end %>
+  </section>
+<% end %>

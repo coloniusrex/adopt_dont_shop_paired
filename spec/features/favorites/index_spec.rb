@@ -145,4 +145,32 @@ describe "As a user on the favorites index page", type: :feature do
     expect(page).to have_no_css("#favorite-#{pet_1.id}")
 
   end
+
+  it "If my favorites list is empty I see text indicating that" do
+    shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
+                               address: "580 McIntyre St",
+                               city:    "Golden",
+                               state:   "CO",
+                               zip:     "80401")
+    pet_1 = shelter_1.pets.create(image_url:        "https://images.unsplash.com/photo-1518900673653-cf9fdd01e430?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+                                   name:            "Tom",
+                                   description:     "Squirrel",
+                                   approximate_age: "4",
+                                   sex:             "Male",
+                                   adoptable:       true,)
+
+    visit '/favorites'
+
+    expect(page).to have_content("You have no favorite pets :(")
+
+    visit "/pets/#{pet_1.id}"
+
+    within('.pet-show-links') do
+      click_link('Favorite Pet')
+    end
+
+    visit "/favorites"
+
+    expect(page).to have_no_content("You have no favorite pets :(")
+  end
 end
