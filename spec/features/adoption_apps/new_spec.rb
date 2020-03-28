@@ -49,8 +49,12 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
     visit '/adoption_apps/new'
 
     within('.favorites-selection') do
-      check "Jenkyl"
-      check "Amara"
+      within("#select-#{@pet_2.id}") do
+        check "Jenkyl"
+      end
+      within("#select-#{@pet_3.id}") do
+        check "Amara"
+      end
     end
 
     within('.adoption-info') do
@@ -65,12 +69,6 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
     click_button 'Submit Adoption Application'
 
     expect(current_path).to eql('/favorites')
-    expect(page).to have_content("Adoption Application Successfully Submitted")
-    within("#favorite-#{@pet_1.id}") do
-      expect(page).to have_content(@pet_1.name)
-    end
-    expect(page).to have_no_content(@pet_2.name)
-    expect(page).to have_no_content(@pet_3.name)
 
     application = AdoptionApp.last
 
@@ -86,8 +84,15 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
     @pet_2.reload
     @pet_3.reload
 
-    expect(@pet_1.adoption_apps).to eql([])
-    expect(@pet_2.adoption_apps).to eql([application])
-    expect(@pet_3.adoption_apps).to eql([application])
+    expect(@pet_1.adoption_apps.last).to eql(nil)
+    expect(@pet_2.adoption_apps.last).to eql(application)
+    expect(@pet_3.adoption_apps.last).to eql(application)
+
+    expect(page).to have_content("Adoption Application Successfully Submitted")
+    within("#favorite-#{@pet_1.id}") do
+      expect(page).to have_content(@pet_1.name)
+    end
+    expect(page).to have_no_content(@pet_2.name)
+    expect(page).to have_no_content(@pet_3.name)
   end
 end
