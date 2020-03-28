@@ -44,12 +44,50 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
       click_link('Favorite Pet')
     end
   end
-  it "at the top of the form I can select from the favorite pets i'd like to adopt" do
+
+  it "I can fill out form with favorite selection, name, address, city, state, zip, phone number, and description and submit app" do
     visit '/adoption_apps/new'
 
-    check "Tom"
-    check "Jenkyl"
-    check "Amara"
-  end
+    within('.favorites-selection') do
+      check "Jenkyl"
+      check "Amara"
+    end
 
+    within('.adoption-info') do
+      fill_in :name, with: "Ryan"
+      fill_in :address, with: "1163 S Dudley St"
+      fill_in :city, with: "Lakewood"
+      fill_in :state, with: "CO"
+      fill_in :zip, with: "80232"
+      fill_in :phone_number, with: "720-771-8977"
+      fill_in :description, with: "I am an amazing pet owner."
+    end
+    click_button 'Submit Adoption Application'
+
+    expect(current_path).to eql('/favorites')
+    expect(page).to have_content("Adoption Application Successfully Submitted")
+    within("#favorite-#{@pet_1.id}") do
+      expect(page).to have_content(@pet_1.name)
+    end
+    expect(page).to have_no_content(@pet_2.name)
+    expect(page).to have_no_content(@pet_3.name)
+
+    application = AdoptionApp.last
+
+    expect(application.name).to eql("Ryan")
+    expect(application.address).to eql("1163 S Dudley St")
+    expect(application.city).to eql("Lakewood")
+    expect(application.state).to eql("CO")
+    expect(application.zip).to eql("80232")
+    expect(application.phone_number).to eql("720-771-8977")
+    expect(application.description).to eql("I am an amazing pet owner.")
+
+    @pet_1.reload
+    @pet_2.reload
+    @pet_3.reload
+
+    expect(@pet_1.adoption_apps).to eql([])
+    expect(@pet_2.adoption_apps).to eql([application])
+    expect(@pet_3.adoption_apps).to eql([application])
+  end
 end
