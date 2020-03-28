@@ -28,6 +28,10 @@ class FavoritesList
     pets.clear
   end
 
+  def remove_multiple(pet_ids)
+    pet_ids.each {|id| remove_id(id)}
+  end
+
   def empty?
     pets.empty?
   end

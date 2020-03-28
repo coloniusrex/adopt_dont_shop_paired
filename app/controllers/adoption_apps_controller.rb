@@ -6,9 +6,7 @@ class AdoptionAppsController < ApplicationController
   def create
     application = AdoptionApp.create(adoption_app_params)
     application.process(params[:selected_pet])
-    params[:selected_pet].each do |pet_id|
-      favorites_list.remove_id(pet_id)
-    end
+    favorites_list.remove_multiple(params[:selected_pet])
     session[:favorites_list] = favorites_list.pets
     flash[:notice] = "Adoption Application Successfully Submitted"
     redirect_to "/favorites"
@@ -20,5 +18,4 @@ class AdoptionAppsController < ApplicationController
     params.permit(:name, :address, :city, :state,
                   :zip, :phone_number, :description)
   end
-  
 end

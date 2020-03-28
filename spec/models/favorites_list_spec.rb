@@ -114,8 +114,25 @@ RSpec.describe FavoritesList, type: :model do
       expect(list.pets).to eql([pet_id1, pet_id2, pet_id3])
 
       list.remove_all
-      
+
       expect(list.pets).to eql([])
+    end
+
+    it "can remove an array of pet ids" do
+      list = FavoritesList.new(nil)
+
+      list.add_pet("1")
+      list.add_pet("2")
+      list.add_pet("3")
+      list.add_pet("4")
+
+      expect(list.pets).to eql(["1", "2", "3", "4"])
+
+      ids_to_remove = ["2", "3"]
+
+      list.remove_multiple(ids_to_remove)
+
+      expect(list.pets).to eql(["1", "4"])
     end
   end
 end
