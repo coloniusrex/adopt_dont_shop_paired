@@ -258,6 +258,6 @@ describe "As a user on the favorites index page", type: :feature do
       click_link('Adopt Pets')
     end
 
-    expect(current_path).to eql("/application/new")
+    expect(current_path).to eql("/adoption_apps/new")
   end
 end
