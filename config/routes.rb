@@ -31,5 +31,7 @@ Rails.application.routes.draw do
   #favorites
   get '/favorites', to: 'favorites#index'
   delete '/favorites', to: 'favorites#destroy'
+  #adoption_apps
+  get '/adoption_apps/new', to: 'adoption_apps#new'
 
 end
