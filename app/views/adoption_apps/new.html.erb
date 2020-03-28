@@ -8,7 +8,21 @@
       <% end %>
     </section>
     <section class="adoption-info">
-      
+      <%= label_tag :name, "Name:" %>
+      <%= text_field_tag :name %>
+      <%= label_tag :address, "Address:" %>
+      <%= text_field_tag :address %>
+      <%= label_tag :city, "City:" %>
+      <%= text_field_tag :city %>
+      <%= label_tag :state, "State:" %>
+      <%= text_field_tag :state %>
+      <%= label_tag :zip, "Zip:" %>
+      <%= text_field_tag :zip %>
+      <%= label_tag :phone_number, "Phone Number:" %>
+      <%= text_field_tag :phone_number %><br/>
+      <%= label_tag :description, "Tell me about your home:" %><br/>
+      <%= text_area_tag :description, nil, size: '200x16'%>
+      <%= submit_tag "Submit Adoption Application" %>
     </section>
   </section>
 <% end %>
