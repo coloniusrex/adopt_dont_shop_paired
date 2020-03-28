@@ -1,6 +1,9 @@
 <% if favorites_list.empty? %>
   <h1>You have no favorite pets :(</h1>
 <% else %>
+  <section class="delete-all">
+    <%= link_to 'Remove All Favorited Pets', '/favorites', method: :delete%>
+  </section>
   <section class="list">
     <% @favorite_pets.each do |pet| %>
       <section id="favorite-<%= pet.id %>">

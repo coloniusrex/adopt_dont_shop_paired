@@ -4,9 +4,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    favorites_list.remove_id(params[:pet_id])
+    favorites_list.remove_all
     session[:favorites_list] = favorites_list.pets
-    flash[:notice] = "Successfully Removed Pet from Favorites"
-    redirect_to request.referer
+    redirect_to '/favorites'
   end
 end

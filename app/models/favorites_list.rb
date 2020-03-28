@@ -24,6 +24,10 @@ class FavoritesList
     pets.delete(pet_id)
   end
 
+  def remove_all
+    pets.clear
+  end
+
   def empty?
     pets.empty?
   end
