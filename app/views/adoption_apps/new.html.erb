@@ -1,0 +1,10 @@
+<h1>Pets Adoption Application</h1>
+<%= form_tag "/adoption_apps/create", method: :post do%>
+  <section class="field-container">
+    <% @favorite_pets.each do |pet| %>
+      <%= check_box_tag pet.name, pet.id %>
+      <%= label_tag pet.name, pet.name %>
+    <% end %>
+
+  </section>
+<% end %>
