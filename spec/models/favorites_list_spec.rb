@@ -88,5 +88,17 @@ RSpec.describe FavoritesList, type: :model do
 
       expect(list.pets).to eql([pet_id1, pet_id3])
     end
+
+    it "can check if we have no pets" do
+      list = FavoritesList.new(nil)
+      pet_id1 = "1"
+
+      expect(list.pets).to eql([])
+      expect(list.empty?).to eql(true)
+
+      list.add_pet(pet_id1)
+
+      expect(list.empty?).to eql(false)
+    end
   end
 end
