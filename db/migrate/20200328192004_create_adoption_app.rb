@@ -8,6 +8,8 @@ class CreateAdoptionApp < ActiveRecord::Migration[5.1]
       t.string :zip
       t.string :phone_number
       t.string :description
+
+      t.timestamps
     end
   end
 end
