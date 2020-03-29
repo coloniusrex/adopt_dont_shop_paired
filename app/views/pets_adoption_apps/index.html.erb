@@ -1,5 +1,11 @@
-<section class="applicants-list">
-  <% @pet.adoption_apps.each do |app| %>
+<% if @pet.adoption_apps.empty? %>
+  <section class="no-applicants">
+    <h1>No applications submitted for this pet :(</h1>
+  </section>
+<% else %>
+  <section class="applicants-list">
+    <% @pet.adoption_apps.each do |app| %>
     <%= link_to app.name, "/adoption_apps/#{app.id}" %>
-  <% end %>
-</section>
+    <% end %>
+  </section>
+<% end %>
