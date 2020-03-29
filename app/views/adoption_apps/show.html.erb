@@ -11,6 +11,9 @@
 </section>
 <section class="app-pet-list">
   <% @pet_app.pets.each do |pet| %>
-  <%= link_to pet.name, "/pets/#{pet.id}" %>
+    <section id="app-pet-<%= pet.id %>">
+      <%= link_to pet.name, "/pets/#{pet.id}" %>
+      <%= link_to 'Approve Application', "/pets/#{pet.id}/adoption_apps/#{@pet_app.id}", method: :patch %>
+    </section>
   <% end %>
 </section>

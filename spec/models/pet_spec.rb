@@ -17,16 +17,26 @@ RSpec.describe Pet, type: :model do
   end
 
   describe "instance methods" do
-    it "can present the adoption status of a pet" do
+    it "can update the adoption status of a pet to pending" do
       shelter = Shelter.create(name:"Shelter Name", address:"123 S Whatever St",
                               city:"Centennial", state:"CO", zip:"80122")
       horse = shelter.pets.create(image_url: "https://", name:"Tom",description:"Horse",
                                   approximate_age: "4", sex:"Male",adoptable: true,)
-      pig = shelter.pets.create(image_url: "https://", name:"Tom",description:"Pig",
-                                  approximate_age: "4", sex:"Male",adoptable: false,)
 
-      expect(horse.adoption_status).to eql("adoptable")
-      expect(pig.adoption_status).to eql("pending adoption")
+      horse.adoption_pending
+
+      expect(horse.adoptable).to eql(false)
+    end
+
+    it "can update the applicant name of a pet" do
+      lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
+                                  approximate_age: "4", sex:"Male",adoptable: true,)
+
+      expect(lucky.applicant_name).to eql(nil)
+
+      lucky.add_applicant_name("Rhonda")
+
+      expect(lucky.applicant_name).to eql("Rhonda")
     end
   end
 end

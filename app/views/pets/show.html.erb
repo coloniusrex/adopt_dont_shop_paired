@@ -4,7 +4,11 @@
     <p><%=  @pet.description %></p>
     <p><%=  @pet.approximate_age %></p>
     <p><%=  @pet.sex %></p>
-    <p><%=  @pet.name %> is <%= @pet.adoption_status %></p>
+    <% if @pet.adoptable %>
+      <p><%=  @pet.name %> is adoptable</p>
+    <% else %>
+      <p> <%= @pet.name %> is pending adoption, on hold for <%= @pet.applicant_name %> </p>
+    <% end %>
   </div>
   <div class="pet-show-links">
     <% if favorites_list.valid?(@pet.id) %>

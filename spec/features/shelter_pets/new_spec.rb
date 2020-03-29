@@ -30,7 +30,7 @@ RSpec.describe "As a user on the new pet page", type: :feature do
         expect(page).to have_content(new_pet.name)
         expect(page).to have_content(new_pet.approximate_age)
         expect(page).to have_content(new_pet.sex)
-        expect(new_pet.adoption_status).to eql("adoptable")
+        expect(new_pet.adoptable).to eql(true)
       end
     end
   end
