@@ -1,6 +1,18 @@
+<section class="pets-applied-for" style="float:right">
+  <h2>Applications Pending For:</h2>
+  <% @pets_with_applications.each do |pet| %>
+    <%= link_to pet.name, "/pets/#{pet.id}", method: :get%>
+  <% end %>
+</section>
+
+<h1>Favorite Pets</h1>
+
 <% if favorites_list.empty? %>
   <h1>You have no favorite pets :(</h1>
 <% else %>
+  <section class="adopt-pets">
+    <%= link_to 'Adopt Pets', '/adoption_apps/new', method: :get %>
+  </section>
   <section class="delete-all">
     <%= link_to 'Remove All Favorited Pets', '/favorites', method: :delete%>
   </section>

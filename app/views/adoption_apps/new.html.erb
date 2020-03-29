@@ -1,0 +1,30 @@
+<h1>Pets Adoption Application</h1>
+<%= form_tag "/adoption_apps", method: :post do%>
+  <section class="field-container">
+    <section class="favorites-selection">
+      <% @favorite_pets.each do |pet| %>
+        <section id="select-<%= pet.id %>">
+          <%= check_box_tag "selected_pet[]", pet.id %>
+          <%= label_tag "selected_pet[]", pet.name %>
+        </section>
+      <% end %>
+    </section>
+    <section class="adoption-info">
+      <%= label_tag :name, "Name:" %>
+      <%= text_field_tag :name %>
+      <%= label_tag :address, "Address:" %>
+      <%= text_field_tag :address %>
+      <%= label_tag :city, "City:" %>
+      <%= text_field_tag :city %>
+      <%= label_tag :state, "State:" %>
+      <%= text_field_tag :state %>
+      <%= label_tag :zip, "Zip:" %>
+      <%= text_field_tag :zip %>
+      <%= label_tag :phone_number, "Phone Number:" %>
+      <%= text_field_tag :phone_number %><br/>
+      <%= label_tag :description, "Tell us a little about you and your home:" %><br/>
+      <%= text_area_tag :description, nil, size: '200x16'%>
+      <%= submit_tag "Submit Adoption Application" %>
+    </section>
+  </section>
+<% end %>

@@ -1,0 +1,16 @@
+<h1>Adoption Application Show Page</h1>
+
+<section class="app-info">
+  <p><%= @pet_app.name %></p>
+  <p><%= @pet_app.address %></p>
+  <p><%= @pet_app.city %></p>
+  <p><%= @pet_app.state %></p>
+  <p><%= @pet_app.zip %></p>
+  <p><%= @pet_app.phone_number %></p>
+  <p><%= @pet_app.description %></p>
+</section>
+<section class="app-pet-list">
+  <% @pet_app.pets.each do |pet| %>
+  <%= link_to pet.name, "/pets/#{pet.id}" %>
+  <% end %>
+</section>
