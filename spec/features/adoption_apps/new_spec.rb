@@ -95,4 +95,27 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
     expect(page).to have_no_content(@pet_2.name)
     expect(page).to have_no_content(@pet_3.name)
   end
+
+  it "If I miss and info on form redirect me back to form with flash error message." do
+    visit '/adoption_apps/new'
+
+    within("#select-#{@pet_2.id}") do
+      check "Jenkyl"
+    end
+
+    within('.adoption-info') do
+      fill_in :name, with: ""
+      fill_in :address, with: "1163 S Dudley St"
+      fill_in :city, with: "Lakewood"
+      fill_in :state, with: "CO"
+      fill_in :zip, with: ""
+      fill_in :phone_number, with: "720-771-8977"
+      fill_in :description, with: "I am an amazing pet owner."
+    end
+    click_button 'Submit Adoption Application'
+
+    expect(current_path).to eql("/adoption_apps/new")
+
+    expect(page).to have_content("Missing information! Please fill out all fields before clicking submit.")
+  end
 end
