@@ -92,8 +92,10 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
     within("#favorite-#{@pet_1.id}") do
       expect(page).to have_content(@pet_1.name)
     end
-    expect(page).to have_no_content(@pet_2.name)
-    expect(page).to have_no_content(@pet_3.name)
+    within(".list") do
+      expect(page).to have_no_content(@pet_2.name)
+      expect(page).to have_no_content(@pet_3.name)
+    end
   end
 
   it "If I miss and info on form redirect me back to form with flash error message." do
