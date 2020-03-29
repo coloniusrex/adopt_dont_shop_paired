@@ -1,0 +1,5 @@
+<section class="applicants-list">
+  <% @pet.adoption_apps.each do |app| %>
+    <%= link_to app.name, "/adoption_apps/#{app.id}" %>
+  <% end %>
+</section>
