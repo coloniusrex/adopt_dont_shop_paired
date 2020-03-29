@@ -4,12 +4,17 @@ class AdoptionAppsController < ApplicationController
   end
 
   def create
-    application = AdoptionApp.create(adoption_app_params)
-    application.process(params[:selected_pet])
-    favorites_list.remove_multiple(params[:selected_pet])
-    session[:favorites_list] = favorites_list.pets
-    flash[:notice] = "Adoption Application Successfully Submitted"
-    redirect_to "/favorites"
+    application = AdoptionApp.new(adoption_app_params)
+    if application.save
+      application.process(params[:selected_pet])
+      favorites_list.remove_multiple(params[:selected_pet])
+      flash[:notice] = "Adoption Application Successfully Submitted"
+      session[:favorites_list] = favorites_list.pets
+      redirect_to "/favorites"
+    else
+      flash[:error] = "Missing information! Please fill out all fields before clicking submit."
+      redirect_to request.referer
+    end
   end
 
   private
