@@ -17,6 +17,10 @@ class AdoptionAppsController < ApplicationController
     end
   end
 
+  def show
+    @pet_app = AdoptionApp.find(params[:id])
+  end
+
   private
 
   def adoption_app_params

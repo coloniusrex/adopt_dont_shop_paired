@@ -292,23 +292,7 @@ describe "As a user on the favorites index page", type: :feature do
                                    approximate_age: "33",
                                    sex:             "Female",
                                    adoptable:       true,)
-   visit "/pets/#{pet_1.id}"
-
-   within('.pet-show-links') do
-     click_link('Favorite Pet')
-   end
-
-   visit "/pets/#{pet_2.id}"
-
-   within('.pet-show-links') do
-     click_link('Favorite Pet')
-   end
-
-   visit "/pets/#{pet_3.id}"
-
-   within('.pet-show-links') do
-     click_link('Favorite Pet')
-   end
+   
     pet_ids = [pet_1.id.to_s, pet_2.id.to_s]
 
     application.process(pet_ids)

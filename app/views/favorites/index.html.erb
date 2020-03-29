@@ -4,7 +4,9 @@
     <%= link_to pet.name, "/pets/#{pet.id}", method: :get%>
   <% end %>
 </section>
+
 <h1>Favorite Pets</h1>
+
 <% if favorites_list.empty? %>
   <h1>You have no favorite pets :(</h1>
 <% else %>
