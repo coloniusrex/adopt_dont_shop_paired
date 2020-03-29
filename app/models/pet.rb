@@ -3,6 +3,7 @@ class Pet < ApplicationRecord
                         :sex
   validates :adoptable, inclusion: { in: [true, false] }
   belongs_to :shelter
+  
   has_many :pet_adoption_apps
   has_many :adoption_apps, through: :pet_adoption_apps
 

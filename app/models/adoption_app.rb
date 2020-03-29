@@ -7,7 +7,7 @@ class AdoptionApp < ApplicationRecord
 
   def process(pet_ids)
     pet_ids.each do |id|
-      PetAdoptionApp.create(adoption_app:self, pet_id:id)
+      PetAdoptionApp.create(adoption_app_id:self.id, pet_id:id)
     end
   end
 end

@@ -12,6 +12,7 @@
     <% else %>
       <p><%= link_to "Favorite Pet", "/pets/#{@pet.id}/favorites", method: :patch %></p>
     <% end %>
+
     <p><%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %></p>
     <p><%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %></p>
   </div>
