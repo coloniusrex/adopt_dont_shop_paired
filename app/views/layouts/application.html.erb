@@ -8,10 +8,6 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <% flash.each do |type, message| %>
-      <p><%= message %></p>
-  <% end %>
-
   <body>
   <div class="navbar">
     <h1 id="main-title">Adopt Don't Shop</h1>
@@ -24,6 +20,9 @@
       <%= link_to "Favorites: #{favorites_list.pets_total}", '/favorites' %>
     </section>
   </div>
+  <% flash.each do |type, message| %>
+      <h1 style="color:red"><%= message %></h1>
+  <% end %>
     <%= yield %>
   </body>
 </html>
