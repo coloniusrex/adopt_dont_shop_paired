@@ -7,7 +7,7 @@
     <% if @pet.adoptable %>
       <p><%=  @pet.name %> is adoptable</p>
     <% else %>
-      <p> <%= @pet.name %> is pending adoption, on hold for <%= @pet.applicant_name %></p>
+      <p> <%= @pet.name %> is pending adoption, on hold for <%# @pet.applicant_name %></p>
     <% end %>
   </div>
   <div class="pet-show-links">

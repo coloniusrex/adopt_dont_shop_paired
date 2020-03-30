@@ -28,36 +28,6 @@ RSpec.describe Pet, type: :model do
       expect(horse.adoptable).to eql(false)
     end
 
-    it "can add the applicant name and id to pet" do
-      lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
-                                  approximate_age: "4", sex:"Male",adoptable: true,)
-
-      expect(lucky.applicant_name).to eql(nil)
-      expect(lucky.applicant_id).to eql(nil)
-
-      lucky.add_applicant_info("Rhonda", "4")
-
-      expect(lucky.applicant_name).to eql("Rhonda")
-      expect(lucky.applicant_id).to eql("4")
-
-    end
-
-    it "can remove the applicant name and id from pet" do
-      lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
-                                  approximate_age: "4", sex:"Male",adoptable: true,)
-
-
-      lucky.add_applicant_info("Rhonda", "4")
-
-      expect(lucky.applicant_name).to eql("Rhonda")
-      expect(lucky.applicant_id).to eql("4")
-
-      lucky.delete_applicant_info
-
-      expect(lucky.applicant_name).to eql(nil)
-      expect(lucky.applicant_id).to eql(nil)
-
-    end
 
     it "can change the pets adoptable status when an application is unapproved" do
       lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",

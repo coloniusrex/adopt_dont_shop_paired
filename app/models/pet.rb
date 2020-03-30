@@ -15,13 +15,4 @@ class Pet < ApplicationRecord
     self.update(adoptable: true)
   end
 
-  def add_applicant_info(name, id)
-    self.update(applicant_name: name, applicant_id: id)
-  end
-
-  def delete_applicant_info
-    self.update(applicant_name: nil, applicant_id: nil)
-  end
-
-
 end
