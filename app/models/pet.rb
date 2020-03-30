@@ -7,12 +7,21 @@ class Pet < ApplicationRecord
   has_many :pet_adoption_apps
   has_many :adoption_apps, through: :pet_adoption_apps
 
-  def adoption_pending
+  def make_unadoptable
     self.update(adoptable: false)
   end
 
-  def add_applicant_name(name)
-    self.update(applicant_name: name)
+  def make_adoptable
+    self.update(adoptable: true)
   end
+
+  def add_applicant_info(name, id)
+    self.update(applicant_name: name, applicant_id: id)
+  end
+
+  def delete_applicant_info
+    self.update(applicant_name: nil, applicant_id: nil)
+  end
+
 
 end

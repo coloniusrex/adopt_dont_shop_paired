@@ -38,5 +38,6 @@ Rails.application.routes.draw do
   #pets_adoption_apps
   get '/pets/:pet_id/adoption_apps', to: 'pets_adoption_apps#index'
   patch '/pets/:pet_id/adoption_apps/:app_id', to: 'pets_adoption_apps#update'
+  delete '/pets/:pet_id/adoption_apps/:app_id', to: 'pets_adoption_apps#delete'
 
 end
