@@ -13,7 +13,13 @@
   <% @pet_app.pets.each do |pet| %>
     <section id="app-pet-<%= pet.id %>">
       <%= link_to pet.name, "/pets/#{pet.id}" %>
-      <%= link_to 'Approve Application', "/pets/#{pet.id}/adoption_apps/#{@pet_app.id}", method: :patch %>
+      <% if pet.applicant_id == @pet_app.id.to_s %>
+        <%= link_to 'Un-Approve Application', "/pets/#{pet.id}/adoption_apps/#{@pet_app.id}", method: :delete %>
+      <% elsif pet.applicant_id.nil? %>
+        <%= link_to 'Approve Application', "/pets/#{pet.id}/adoption_apps/#{@pet_app.id}", method: :patch %>
+      <% else %>
+        <p><%= 'Another application is currently pending.' %></p>
+      <% end %>
     </section>
   <% end %>
 </section>
