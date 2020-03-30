@@ -14,7 +14,7 @@
     <section id="app-pet-<%= pet.id %>">
       <%= link_to pet.name, "/pets/#{pet.id}" %>
       <% if pet.applicant_id == @pet_app.id.to_s %>
-        <%= link_to 'Un-Approve Application', "/pets/#{pet.id}/adoption_apps/#{@pet_app.id}", method: :delete %>
+        <%= link_to 'Un-Approve Application', "/pets/#{pet.id}/adoption_apps", method: :delete %>
       <% elsif pet.applicant_id.nil? %>
         <%= link_to 'Approve Application', "/pets/#{pet.id}/adoption_apps/#{@pet_app.id}", method: :patch %>
       <% else %>
