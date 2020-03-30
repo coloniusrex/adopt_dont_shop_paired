@@ -13,8 +13,8 @@ class PetsAdoptionAppsController < ApplicationController
 
   def delete
     pet = Pet.find(params[:pet_id])
-    pet.delete_applicant_info
     pet.make_adoptable
+    pet.delete_applicant_info
     redirect_to request.referer
   end
 end
