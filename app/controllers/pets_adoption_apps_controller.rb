@@ -8,6 +8,7 @@ class PetsAdoptionAppsController < ApplicationController
     pet.make_unadoptable
     pet_adoption_app = PetAdoptionApp.where(adoption_app_id:params[:app_id], pet_id: params[:pet_id])
     pet_adoption_app.update(approved:true)
+    require 'pry'; binding.pry
     redirect_to "/pets/#{params[:pet_id]}"
   end
 

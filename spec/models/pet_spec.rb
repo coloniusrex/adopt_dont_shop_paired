@@ -41,5 +41,30 @@ RSpec.describe Pet, type: :model do
 
       expect(lucky.adoptable).to eql(true)
     end
+
+    it "can find name of approved applicant" do
+      lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
+                                  approximate_age: "4", sex:"Male",adoptable: true,)
+      application1 = AdoptionApp.create(name:"Ryan",
+                                      address: "23 Cedarwood Road",
+                                      city: "Omaha",
+                                      state: "NE",
+                                      zip: "68107",
+                                      phone_number: "456-908-7656",
+                                      description: "I am a good pet owner")
+
+      application2 = AdoptionApp.create(name:"Colin",
+                                      address: "8397 Mayfair Lane",
+                                      city: "Chevy Chase",
+                                      state: "MD",
+                                      zip: "20815",
+                                      phone_number: "303-675-0987",
+                                      description: "I am the best pet owner")
+      application1.process([lucky.id])
+      
+
+
+    end
+
   end
 end

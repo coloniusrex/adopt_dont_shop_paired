@@ -11,4 +11,14 @@ class AdoptionApp < ApplicationRecord
       PetAdoptionApp.create(adoption_app_id:self.id, pet_id:id)
     end
   end
+
+  def approve_for(pet_id)
+    pet_adoption_apps.where(pet_id:pet_id).update(approved:true)
+  end
+
+  def approve_multiple(array_of_pet_ids)
+    array_of_pet_ids.each do |pet_id|
+      approve_for(pet_id)
+    end
+  end
 end
