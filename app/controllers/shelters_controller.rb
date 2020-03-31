@@ -31,7 +31,7 @@ class SheltersController < ApplicationController
       flash[:error] = "Can not delete shelter. Pet adoption currently pending."
       redirect_to request.referer
     else
-      shelter.pets.delete_all
+      shelter.destroy_dependencies
       shelter.destroy
       redirect_to '/shelters'
     end

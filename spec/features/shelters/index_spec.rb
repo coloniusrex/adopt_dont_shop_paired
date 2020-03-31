@@ -161,4 +161,45 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
     expect(page).to have_css("#shelter-list-item-#{shelter1.id}")
     expect(page).to have_content("Can not delete shelter. Pet adoption currently pending.")
   end
+
+  it "I can delete shelter as lon as all pets do not have approved applications" do
+    shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+    pet1 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                                name:            "Moma",
+                                description:     "Pug",
+                                approximate_age: "2",
+                                sex:             "Female",
+                                adoptable:       true)
+
+    pet2 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1516598540642-e8f40a09d939?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80",
+                                name:            "Charlie",
+                                description:     "Yello Lab",
+                                approximate_age: "6",
+                                sex:             "Male",
+                                adoptable:       true)
+    shelter1.reviews.create(title:    'Greate Shelter',
+                                        rating:   5,
+                                        content:  'Outstanding, knowledgable and friendly staff.')
+    shelter1.reviews.create(title:    'It\'s OK',
+                                        rating:   3,
+                                        content:  'I felt as the staff was a little standoff-ish. Maybe I just met them on a bad day.')
+    application1 = AdoptionApp.create(name:"Ryan",
+                                    address: "23 Cedarwood Road",
+                                    city: "Omaha",
+                                    state: "NE",
+                                    zip: "68107",
+                                    phone_number: "456-908-7656",
+                                    description: "I am a good pet owner")
+    application1.process([pet1.id])
+
+    visit "/shelters"
+
+    expect(shelter1.pets_pending_adoption?).to eql(false)
+
+    within("#shelter-list-item-#{shelter1.id}") do
+      click_link("Delete Shelter")
+    end
+
+    expect(Shelter.exists?(shelter1.id)).to eql(false)
+  end
 end
