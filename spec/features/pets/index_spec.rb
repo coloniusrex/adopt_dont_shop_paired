@@ -208,7 +208,7 @@ RSpec.describe "As a user on the pets index page", type: :feature do
     within("#pet-list-item-#{pet1.id}") do
       click_link("Delete Pet")
     end
-    
+
     expect(current_path).to eql('/pets')
     expect(page).to have_content("Can not delete pet. Adoption currently pending.")
 
