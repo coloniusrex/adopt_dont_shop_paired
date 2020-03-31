@@ -28,36 +28,6 @@ RSpec.describe Pet, type: :model do
       expect(horse.adoptable).to eql(false)
     end
 
-    it "can add the applicant name and id to pet" do
-      lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
-                                  approximate_age: "4", sex:"Male",adoptable: true,)
-
-      expect(lucky.applicant_name).to eql(nil)
-      expect(lucky.applicant_id).to eql(nil)
-
-      lucky.add_applicant_info("Rhonda", "4")
-
-      expect(lucky.applicant_name).to eql("Rhonda")
-      expect(lucky.applicant_id).to eql("4")
-
-    end
-
-    it "can remove the applicant name and id from pet" do
-      lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
-                                  approximate_age: "4", sex:"Male",adoptable: true,)
-
-
-      lucky.add_applicant_info("Rhonda", "4")
-
-      expect(lucky.applicant_name).to eql("Rhonda")
-      expect(lucky.applicant_id).to eql("4")
-
-      lucky.delete_applicant_info
-
-      expect(lucky.applicant_name).to eql(nil)
-      expect(lucky.applicant_id).to eql(nil)
-
-    end
 
     it "can change the pets adoptable status when an application is unapproved" do
       lucky = Pet.create(image_url: "https://", name:"Tom",description:"Horse",
@@ -71,5 +41,59 @@ RSpec.describe Pet, type: :model do
 
       expect(lucky.adoptable).to eql(true)
     end
+
+    it "can find name of approved applicant" do
+      shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+      lucky = shelter1.pets.create(image_url: "https://", name:"Tom",description:"Horse",
+                                  approximate_age: "4", sex:"Male",adoptable: true,)
+      application1 = AdoptionApp.create(name:"Ryan",
+                                      address: "23 Cedarwood Road",
+                                      city: "Omaha",
+                                      state: "NE",
+                                      zip: "68107",
+                                      phone_number: "456-908-7656",
+                                      description: "I am a good pet owner")
+
+      application2 = AdoptionApp.create(name:"Colin",
+                                      address: "8397 Mayfair Lane",
+                                      city: "Chevy Chase",
+                                      state: "MD",
+                                      zip: "20815",
+                                      phone_number: "303-675-0987",
+                                      description: "I am the best pet owner")
+      application1.process([lucky.id])
+      application2.process([lucky.id])
+      application1.approve_for(lucky.id)
+
+      expect(lucky.approved_applicant_name).to eql(application1.name)
+
+    end
+
+    it "can find an approved applications id through pet_adoption_apps" do
+      shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+      lucky = shelter1.pets.create(image_url: "https://", name:"Tom",description:"Horse",
+                                  approximate_age: "4", sex:"Male",adoptable: true,)
+      application1 = AdoptionApp.create(name:"Ryan",
+                                      address: "23 Cedarwood Road",
+                                      city: "Omaha",
+                                      state: "NE",
+                                      zip: "68107",
+                                      phone_number: "456-908-7656",
+                                      description: "I am a good pet owner")
+
+      application2 = AdoptionApp.create(name:"Colin",
+                                      address: "8397 Mayfair Lane",
+                                      city: "Chevy Chase",
+                                      state: "MD",
+                                      zip: "20815",
+                                      phone_number: "303-675-0987",
+                                      description: "I am the best pet owner")
+      application1.process([lucky.id])
+      application2.process([lucky.id])
+      application1.approve_for(lucky.id)
+
+      expect(lucky.approved_application_id).to eql(application1.id)
+    end
+
   end
 end

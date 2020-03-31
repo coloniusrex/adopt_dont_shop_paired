@@ -6,4 +6,16 @@ class Shelter < ApplicationRecord
   def adoptable_pets
     pets.where(adoptable:true)
   end
+
+  def pets_pending_adoption?
+    pets.where(adoptable:false).present?
+  end
+
+  def destroy_dependencies
+    pets.each do |pet|
+      pet.pet_adoption_apps.destroy_all
+    end
+    pets.destroy_all
+    reviews.destroy_all
+  end
 end
