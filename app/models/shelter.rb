@@ -18,4 +18,20 @@ class Shelter < ApplicationRecord
     pets.destroy_all
     reviews.destroy_all
   end
+
+  def pet_count
+    pets.count
+  end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
+  def total_applications
+    apps = []
+    pets.each do |pet|
+      apps << pet.adoption_apps
+    end
+    apps.flatten.uniq.length
+  end
 end

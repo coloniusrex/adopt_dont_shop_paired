@@ -258,5 +258,52 @@ RSpec.describe 'As a user the shelter show page', type: :feature do
     expect(Review.exists?(review2.id)).to eql(false)
   end
 
+  it "I can see statistics for this shelter with count of pets, average rating and number of apps on file" do
+    shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+    pet1 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                                name:            "Moma",
+                                description:     "Pug",
+                                approximate_age: "2",
+                                sex:             "Female",
+                                adoptable:       true)
 
+    pet2 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1516598540642-e8f40a09d939?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80",
+                                name:            "Charlie",
+                                description:     "Yello Lab",
+                                approximate_age: "6",
+                                sex:             "Male",
+                                adoptable:       true)
+    review1 = shelter1.reviews.create(title:    'Greate Shelter',
+                                        rating:   5,
+                                        content:  'Outstanding, knowledgable and friendly staff.')
+
+    review2 = shelter1.reviews.create(title:    'It\'s OK',
+                                        rating:   3,
+                                        content:  'I felt as the staff was a little standoff-ish. Maybe I just met them on a bad day.')
+    application1 = AdoptionApp.create(name:"Ryan",
+                                    address: "23 Cedarwood Road",
+                                    city: "Omaha",
+                                    state: "NE",
+                                    zip: "68107",
+                                    phone_number: "456-908-7656",
+                                    description: "I am a good pet owner")
+
+    application2 = AdoptionApp.create(name:"Colin",
+                                    address: "8397 Mayfair Lane",
+                                    city: "Chevy Chase",
+                                    state: "MD",
+                                    zip: "20815",
+                                    phone_number: "303-675-0987",
+                                    description: "I am the best pet owner")
+    application1.process([pet1.id])
+    application2.process([pet2.id])
+
+    visit "/shelters/#{shelter1.id}"
+
+    within('.shelter-stats') do
+      expect(page).to have_content('Number of pets: 2')
+      expect(page).to have_content('Avg Review Rating: 4')
+      expect(page).to have_content('Total applications on file: 2')
+    end
+  end
 end

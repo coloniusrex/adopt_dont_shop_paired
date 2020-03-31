@@ -41,4 +41,35 @@ RSpec.describe 'As a user on the new shelter form page', type: :feature do
 
     expect(current_path).to eql("/shelters")
   end
+
+  it "I can see a flash message with the missing fields when I fill out a form incomplete" do
+    visit "/shelters/new"
+
+    within('.new-shelter-form') do
+      fill_in :name, with: 'Humane Society of Utah'
+      fill_in :address, with: '4242 S 300 W'
+      fill_in :city, with: ''
+      fill_in :state, with: 'UT'
+      fill_in :zip, with: ''
+      click_button('Create Shelter')
+    end
+
+    expect(current_path).to eql("/shelters/new")
+
+    expect(page).to have_content("Incomplete Submission: Please fill out City, Zip to complete your form.")
+
+    within('.new-shelter-form') do
+      fill_in :name, with: ''
+      fill_in :address, with: ''
+      fill_in :city, with: 'Denver'
+      fill_in :state, with: ''
+      fill_in :zip, with: '80203'
+      click_button('Create Shelter')
+    end
+
+    expect(current_path).to eql("/shelters/new")
+
+    expect(page).to have_content("Incomplete Submission: Please fill out Name, Address, State to complete your form.")
+
+  end
 end
