@@ -1,0 +1,29 @@
+<section class="update-form">
+  <%= form_tag path, method: method do %>
+    <div class="field-container">
+      <div class="input-field">
+        <%= label_tag :name %>
+        <%= text_field_tag :name, shelter_name %>
+      </div>
+      <div class="input-field">
+        <%= label_tag :address %>
+        <%= text_field_tag :address, shelter_address %>
+      </div>
+      <div class="input-field">
+        <%= label_tag :city %>
+        <%= text_field_tag :city, shelter_city %>
+      </div>
+      <div class="input-field">
+        <%= label_tag :state %>
+        <%= text_field_tag :state, shelter_state %>
+      </div>
+      <div class="input-field">
+        <%= label_tag :zip %>
+        <%= text_field_tag :zip, shelter_zip %>
+      </div>
+      <div class="submit-button">
+        <%= submit_tag button_text %>
+      </div>
+    </div>
+  <% end %>
+</section>

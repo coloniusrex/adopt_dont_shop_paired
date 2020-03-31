@@ -1,30 +1,12 @@
-<h1>Update the Shelter Information:</h1>
-<section class="update-form">
-  <%= form_tag "/shelters/#{@shelter.id}", method: :patch do %>
-    <div class="field-container">
-      <div class="input-field">
-        <%= label_tag :name %>
-        <%= text_field_tag :name, @shelter.name %>
-      </div>
-      <div class="input-field">
-        <%= label_tag :address %>
-        <%= text_field_tag :address, @shelter.address %>
-      </div>
-      <div class="input-field">
-        <%= label_tag :city %>
-        <%= text_field_tag :city, @shelter.city %>
-      </div>
-      <div class="input-field">
-        <%= label_tag :state %>
-        <%= text_field_tag :state, @shelter.state %>
-      </div>
-      <div class="input-field">
-        <%= label_tag :zip %>
-        <%= text_field_tag :zip, @shelter.zip %>
-      </div>
-      <div class="submit-button">
-        <%= submit_tag "Update Shelter" %>
-      </div>
-    </div>
-  <% end %>
-</section>
+<h1>Edit Shelter</h1>
+
+<%= render partial:"shelter_form", locals: {
+                                            path:"/shelters/#{@shelter.id}",
+                                            method: :patch,
+                                            button_text: "Update Shelter",
+                                            shelter_name: @shelter.name,
+                                            shelter_address: @shelter.address,
+                                            shelter_city: @shelter.city,
+                                            shelter_state: @shelter.state,
+                                            shelter_zip: @shelter.zip,
+                                            } %>
