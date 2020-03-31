@@ -11,8 +11,14 @@ class SheltersController < ApplicationController
   end
 
   def create
-    Shelter.create(shelter_params)
-    redirect_to '/shelters'
+    shelter = Shelter.new(shelter_params)
+    if shelter.save
+      redirect_to '/shelters'
+    else
+      flash[:error] = "Incomplete Submission: Please fill out #{missing_fields} to complete your form."
+      redirect_to request.referer
+    end
+
   end
 
   def edit
@@ -35,5 +41,15 @@ class SheltersController < ApplicationController
   private
   def shelter_params
     params.permit(:name, :address, :city, :state, :zip)
+  end
+
+  def missing_fields
+    missing_hash = shelter_params.keep_if{|k,v| v == ""}
+    missing_keys = missing_hash.keys
+    capitalize(missing_keys).join(", ")
+  end
+
+  def capitalize(array)
+    array.map { |item| item.capitalize }
   end
 end
