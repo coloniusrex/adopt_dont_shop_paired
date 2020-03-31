@@ -6,4 +6,16 @@ class Shelter < ApplicationRecord
   def adoptable_pets
     pets.where(adoptable:true)
   end
+
+  def pet_count
+    pets.count
+  end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
+  def total_applications
+    require "pry"; binding.pry
+  end
 end
