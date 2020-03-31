@@ -69,7 +69,7 @@ RSpec.describe Pet, type: :model do
 
     end
 
-    it "can find an approved applications id through pet_adoption_apps" do
+    it "can find an approved applications id or return 0 if none" do
       shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
       lucky = shelter1.pets.create(image_url: "https://", name:"Tom",description:"Horse",
                                   approximate_age: "4", sex:"Male",adoptable: true,)
@@ -90,9 +90,14 @@ RSpec.describe Pet, type: :model do
                                       description: "I am the best pet owner")
       application1.process([lucky.id])
       application2.process([lucky.id])
+
+      expect(lucky.approved_application_id).to eql(0)
+
       application1.approve_for(lucky.id)
 
       expect(lucky.approved_application_id).to eql(application1.id)
+
+
     end
 
     it "can destroy destroy dependencies, pet adoption apps" do
@@ -121,7 +126,7 @@ RSpec.describe Pet, type: :model do
       expect(lucky.pet_adoption_apps[1]).to eql(pet_adoption_apps2)
 
       lucky.destroy_dependencies
-      
+
       expect(PetAdoptionApp.exists?(pet_adoption_apps1.id)).to eql(false)
       expect(PetAdoptionApp.exists?(pet_adoption_apps2.id)).to eql(false)
     end

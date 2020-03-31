@@ -9,7 +9,6 @@ class FavoritesList
 
   def add_pet(pet_id)
     return pets << pet_id unless pets.include?(pet_id)
-    false
   end
 
   def pets_total
