@@ -165,10 +165,12 @@ RSpec.describe Shelter, type: :model do
       expect(shelter.total_applications).to eql(0)
 
       application1.process([pet1.id, pet2.id])
+      shelter.reload
 
       expect(shelter.total_applications).to eql(1)
 
-      application1.process([pet2.id])
+      application2.process([pet2.id])
+      shelter.reload
 
       expect(shelter.total_applications).to eql(2)
 

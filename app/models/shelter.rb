@@ -28,6 +28,10 @@ class Shelter < ApplicationRecord
   end
 
   def total_applications
-    require "pry"; binding.pry
+    apps = []
+    pets.each do |pet|
+      apps << pet.adoption_apps
+    end
+    apps.flatten.uniq.length
   end
 end
