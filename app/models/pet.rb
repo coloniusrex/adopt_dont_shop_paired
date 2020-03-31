@@ -16,7 +16,7 @@ class Pet < ApplicationRecord
   end
 
   def has_approved_application?
-    !pet_adoption_apps.where(approved: true).empty?
+    pet_adoption_apps.where(approved: true).present?
   end
 
   def approved_application_id
@@ -31,8 +31,8 @@ class Pet < ApplicationRecord
     adoption_apps.find(approved_application_id).name
   end
 
-  def self.make_unadoptable(array_of_pet_ids)
-    
+  def destroy_dependencies
+    pet_adoption_apps.destroy_all unless has_approved_application?
   end
 
 end

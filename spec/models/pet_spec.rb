@@ -95,5 +95,36 @@ RSpec.describe Pet, type: :model do
       expect(lucky.approved_application_id).to eql(application1.id)
     end
 
+    it "can destroy destroy dependencies, pet adoption apps" do
+      shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+      lucky = shelter1.pets.create(image_url: "https://", name:"Tom",description:"Horse",
+                                  approximate_age: "4", sex:"Male",adoptable: true,)
+      application1 = AdoptionApp.create(name:"Ryan",
+                                      address: "23 Cedarwood Road",
+                                      city: "Omaha",
+                                      state: "NE",
+                                      zip: "68107",
+                                      phone_number: "456-908-7656",
+                                      description: "I am a good pet owner")
+
+      application2 = AdoptionApp.create(name:"Colin",
+                                      address: "8397 Mayfair Lane",
+                                      city: "Chevy Chase",
+                                      state: "MD",
+                                      zip: "20815",
+                                      phone_number: "303-675-0987",
+                                      description: "I am the best pet owner")
+      pet_adoption_apps1 = PetAdoptionApp.create(adoption_app: application1, pet: lucky)
+      pet_adoption_apps2 = PetAdoptionApp.create(adoption_app: application2, pet: lucky)
+
+      expect(lucky.pet_adoption_apps[0]).to eql(pet_adoption_apps1)
+      expect(lucky.pet_adoption_apps[1]).to eql(pet_adoption_apps2)
+
+      lucky.destroy_dependencies
+      
+      expect(PetAdoptionApp.exists?(pet_adoption_apps1.id)).to eql(false)
+      expect(PetAdoptionApp.exists?(pet_adoption_apps2.id)).to eql(false)
+    end
+
   end
 end
