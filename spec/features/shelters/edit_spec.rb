@@ -10,7 +10,7 @@ RSpec.describe 'A a user o the update shelter page', type: :feature do
 
     visit "shelters/#{shelter.id}/edit"
 
-    within('.update-form') do
+    within('.shelter-form') do
       fill_in :name, with: "Updated Shelter Name"
       fill_in :address, with: "Updated Address"
       fill_in :city, with: "Updated City"
@@ -74,7 +74,7 @@ RSpec.describe 'A a user o the update shelter page', type: :feature do
 
     visit "/shelters/#{shelter_1.id}/edit"
 
-    within('.update-form') do
+    within('.shelter-form') do
       fill_in :name, with: 'Humane Society of Utah'
       fill_in :address, with: '4242 S 300 W'
       fill_in :city, with: ''
@@ -87,7 +87,7 @@ RSpec.describe 'A a user o the update shelter page', type: :feature do
 
     expect(page).to have_content("Incomplete Submission: Please fill out City, Zip to complete your form.")
 
-    within('.update-form') do
+    within('.shelter-form') do
       fill_in :name, with: ''
       fill_in :address, with: ''
       fill_in :city, with: 'Denver'

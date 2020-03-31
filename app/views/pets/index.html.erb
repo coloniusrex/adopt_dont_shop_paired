@@ -11,7 +11,7 @@
           <p><%= pet.description %></p>
           <p><%= pet.approximate_age %></p>
           <p><%= pet.sex %></p>
-          <p>Current Shelter:<%= link_to "/shelters/#{pet.shelter.id}", pet.shelter.name %></p>
+          <p>Current Shelter:<%= link_to pet.shelter.name, "/shelters/#{pet.shelter.id}" %></p>
         </div>
         <div class="pet-crud-links">
           <p><%= link_to "Update Pet", "/pets/#{pet.id}/edit" %></p>

@@ -4,7 +4,7 @@ RSpec.describe 'As a user on the new shelter form page', type: :feature do
   it 'I can create a new shelter' do
     visit '/shelters/new'
 
-    within('.new-shelter-form') do
+    within('.shelter-form') do
       fill_in :name, with: 'Humane Society of Utah'
       fill_in :address, with: '4242 S 300 W'
       fill_in :city, with: 'Murray'
@@ -45,7 +45,7 @@ RSpec.describe 'As a user on the new shelter form page', type: :feature do
   it "I can see a flash message with the missing fields when I fill out a form incomplete" do
     visit "/shelters/new"
 
-    within('.new-shelter-form') do
+    within('.shelter-form') do
       fill_in :name, with: 'Humane Society of Utah'
       fill_in :address, with: '4242 S 300 W'
       fill_in :city, with: ''
@@ -58,7 +58,7 @@ RSpec.describe 'As a user on the new shelter form page', type: :feature do
 
     expect(page).to have_content("Incomplete Submission: Please fill out City, Zip to complete your form.")
 
-    within('.new-shelter-form') do
+    within('.shelter-form') do
       fill_in :name, with: ''
       fill_in :address, with: ''
       fill_in :city, with: 'Denver'

@@ -17,8 +17,14 @@ class PetsController < ApplicationController
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    redirect_to '/pets'
+    pet = Pet.find(params[:id])
+    if pet.has_approved_application?
+      flash[:error] = "Can not delete pet. Adoption currently pending."
+    else
+      pet.destroy_dependencies
+      Pet.destroy(params[:id])
+    end
+    redirect_to "/pets"
   end
 
   private

@@ -185,4 +185,42 @@ RSpec.describe "As a user on the pets index page", type: :feature do
     expect(current_path).to eql("/shelters")
   end
 
+  it 'I can not delete a pet if it has approved application on it' do
+    shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+    pet1 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                                name:            "Moma",
+                                description:     "Pug",
+                                approximate_age: "2",
+                                sex:             "Female",
+                                adoptable:       true)
+    application1 = AdoptionApp.create(name:"Ryan",
+                                    address: "23 Cedarwood Road",
+                                    city: "Omaha",
+                                    state: "NE",
+                                    zip: "68107",
+                                    phone_number: "456-908-7656",
+                                    description: "I am a good pet owner")
+    application1.process([pet1.id])
+    application1.approve_for(pet1.id)
+
+    visit '/pets'
+
+    within("#pet-list-item-#{pet1.id}") do
+      click_link("Delete Pet")
+    end
+    
+    expect(current_path).to eql('/pets')
+    expect(page).to have_content("Can not delete pet. Adoption currently pending.")
+
+    application1.unapprove_for(pet1.id)
+
+    within("#pet-list-item-#{pet1.id}") do
+      click_link("Delete Pet")
+    end
+
+    expect(current_path).to eql('/pets')
+    expect(page).to have_no_css("#pet-list-item-#{pet1.id}")
+  end
+
+
 end
