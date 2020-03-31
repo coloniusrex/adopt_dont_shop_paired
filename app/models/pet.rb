@@ -15,13 +15,24 @@ class Pet < ApplicationRecord
     self.update(adoptable: true)
   end
 
-  def add_applicant_info(name, id)
-    self.update(applicant_name: name, applicant_id: id)
+  def has_approved_application?
+    !pet_adoption_apps.where(approved: true).empty?
   end
 
-  def delete_applicant_info
-    self.update(applicant_name: nil, applicant_id: nil)
+  def approved_application_id
+    if has_approved_application?
+      pet_adoption_apps.where(approved: true).take.adoption_app_id
+    else
+      0
+    end
   end
 
+  def approved_applicant_name
+    adoption_apps.find(approved_application_id).name
+  end
+
+  def self.make_unadoptable(array_of_pet_ids)
+    
+  end
 
 end
