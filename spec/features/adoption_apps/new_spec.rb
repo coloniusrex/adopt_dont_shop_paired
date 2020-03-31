@@ -24,7 +24,7 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
                                    description:     "Elephant",
                                    approximate_age: "33",
                                    sex:             "Female",
-                                   adoptable:       false,)
+                                   adoptable:       true,)
 
     visit "/pets/#{@pet_1.id}"
 
@@ -52,10 +52,12 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
       within("#select-#{@pet_2.id}") do
         check "Jenkyl"
       end
+
       within("#select-#{@pet_3.id}") do
         check "Amara"
       end
     end
+
 
     within('.adoption-info') do
       fill_in :name, with: "Ryan"
@@ -66,6 +68,7 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
       fill_in :phone_number, with: "720-771-8977"
       fill_in :description, with: "I am an amazing pet owner."
     end
+
     click_button 'Submit Adoption Application'
 
     expect(current_path).to eql('/favorites')

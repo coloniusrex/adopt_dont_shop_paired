@@ -6,4 +6,8 @@ class Shelter < ApplicationRecord
   def adoptable_pets
     pets.where(adoptable:true)
   end
+
+  def pets_pending_adoption?
+    pets.where(adoptable:false).present?
+  end
 end

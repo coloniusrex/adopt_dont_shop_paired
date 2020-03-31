@@ -33,5 +33,22 @@ RSpec.describe Shelter, type: :model do
       expect(shelter.adoptable_pets[0].id).to eql(horse.id)
       expect(shelter.adoptable_pets[1].id).to eql(squirrel.id)
     end
+
+    it "can check if any of its pets are pending adoption" do
+      shelter = Shelter.create(name:"Shelter Name", address:"123 S Whatever St",
+                              city:"Centennial", state:"CO", zip:"80122")
+      horse = shelter.pets.create(image_url: "https://", name:"Tom",description:"Horse",
+                                  approximate_age: "4", sex:"Male")
+      pig = shelter.pets.create(image_url: "https://", name:"Tom",description:"Pig",
+                                  approximate_age: "4", sex:"Male")
+      squirrel = shelter.pets.create(image_url: "https://", name:"Tom",description:"Squirrel",
+                                  approximate_age: "4", sex:"Male")
+
+      expect(shelter.pets_pending_adoption?).to eql(false)
+
+      horse.make_unadoptable
+
+      expect(shelter.pets_pending_adoption?).to eql(true)
+    end
   end
 end

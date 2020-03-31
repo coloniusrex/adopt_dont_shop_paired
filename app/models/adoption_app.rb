@@ -21,4 +21,8 @@ class AdoptionApp < ApplicationRecord
       approve_for(pet_id)
     end
   end
+
+  def unapprove_for(pet_id)
+    pet_adoption_apps.where(pet_id:pet_id).update(approved:false)
+  end
 end

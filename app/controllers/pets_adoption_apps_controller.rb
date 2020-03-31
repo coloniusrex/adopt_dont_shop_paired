@@ -6,15 +6,16 @@ class PetsAdoptionAppsController < ApplicationController
   def update
     pet = Pet.find(params[:pet_id])
     pet.make_unadoptable
-    pet_adoption_app = PetAdoptionApp.where(adoption_app_id:params[:app_id], pet_id: params[:pet_id])
-    pet_adoption_app.update(approved:true)
-    require 'pry'; binding.pry
+    application = pet.adoption_apps.where(id:params[:app_id]).take
+    application.approve_for(pet.id)
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
   def delete
     pet = Pet.find(params[:pet_id])
     pet.make_adoptable
+    application = pet.adoption_apps.where(id:params[:app_id]).take
+    application.unapprove_for(pet.id)
     redirect_to request.referer
   end
 end

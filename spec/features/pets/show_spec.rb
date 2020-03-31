@@ -65,25 +65,19 @@ RSpec.describe "As a user", type: :feature do
                                state:   "CO",
                                zip:     "80401")
     pet_1 = shelter_1.pets.create(image_url:       "https://images.unsplash.com/photo-1538083156950-7ad24f318e7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                                  name:            "Charlie",
-                                  description:     "Yello Lab",
-                                  approximate_age: "6",
+                                  name:            "Tyrell",
+                                  description:     "Orange Lab",
+                                  approximate_age: "1011",
                                   sex:             "Male",
                                   adoptable:       true)
 
     visit "/pets/#{pet_1.id}"
 
-    expect(Pet.exists?(pet_1.id)).to eql(true)
-
     click_link('Delete Pet')
 
     expect(current_path).to eql('/pets')
-    expect(Pet.exists?(pet_1.id)).to eql(false)
-    expect(page).to have_no_css('img[src*="https://images.unsplash.com/photo-1538083156950-7ad24f318e7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"]')
-    expect(page).to have_no_content(pet_1.name)
-    expect(page).to have_no_content(pet_1.description)
-    expect(page).to have_no_content(pet_1.approximate_age)
-    expect(page).to have_no_content(pet_1.sex)
+    expect(page).to have_no_css("#pet-list-item-#{pet_1.id}")
+
   end
 
   it "I can click on a link in the nav bar that can take me to the pet index" do

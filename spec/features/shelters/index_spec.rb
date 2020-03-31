@@ -130,4 +130,35 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
 
     expect(current_path).to eql("/shelters")
   end
+
+  it "I can not delete this shelter if it has pets with pending status" do
+    shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
+    pet1 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                                name:            "Moma",
+                                description:     "Pug",
+                                approximate_age: "2",
+                                sex:             "Female",
+                                adoptable:       true)
+
+    pet2 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1516598540642-e8f40a09d939?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80",
+                                name:            "Charlie",
+                                description:     "Yello Lab",
+                                approximate_age: "6",
+                                sex:             "Male",
+                                adoptable:       true)
+
+    pet2.make_unadoptable
+
+    visit "/shelters"
+
+    within("#shelter-list-item-#{shelter1.id}") do
+      within('.shelter-links') do
+        click_link('Delete Shelter')
+      end
+    end
+
+    expect(current_path).to eql("/shelters")
+    expect(page).to have_css("#shelter-list-item-#{shelter1.id}")
+    expect(page).to have_content("Can not delete shelter. Pet adoption currently pending.")
+  end
 end

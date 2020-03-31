@@ -126,9 +126,43 @@ RSpec.describe AdoptionApp, type: :model do
       application.approve_multiple([pet1.id, pet2.id])
       pet_adoption_app1.reload
       pet_adoption_app2.reload
-      
+
       expect(pet_adoption_app1.approved).to eql(true)
       expect(pet_adoption_app2.approved).to eql(true)
+    end
+
+    it "can unapprove application and switch pet_adoption_apps approved attribute to false for a pet" do
+      application = AdoptionApp.create(name:"Ryan",
+                                      address: "1163 S Dudley St.",
+                                      city: "Lakewood",
+                                      state: "CO",
+                                      zip: "80232",
+                                      phone_number: "720-771-8977",
+                                      description: "I am a good pet owner")
+      shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
+                                 address: "580 McIntyre St",
+                                 city:    "Golden",
+                                 state:   "CO",
+                                 zip:     "80401")
+      pet_1 = shelter_1.pets.create(image_url:        "https://images.unsplash.com/photo-1518900673653-cf9fdd01e430?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+                                     name:            "Tom",
+                                     description:     "Squirrel",
+                                     approximate_age: "4",
+                                     sex:             "Male")
+
+      application.process([pet_1.id])
+
+      pet_adoption_app =  PetAdoptionApp.where(adoption_app_id: application.id, pet_id: pet_1.id).take
+
+      application.approve_for(pet_1.id)
+      pet_adoption_app.reload
+
+      expect(pet_adoption_app.approved).to eql(true)
+
+      application.unapprove_for(pet_1.id)
+      pet_adoption_app.reload
+
+      expect(pet_adoption_app.approved).to eql(false)
     end
   end
 end
