@@ -23,6 +23,8 @@ class PetsController < ApplicationController
     else
       pet.destroy_dependencies
       Pet.destroy(params[:id])
+      favorites_list.remove_id(params[:id])
+      session[:favorites_list] = favorites_list.pets
     end
     redirect_to "/pets"
   end
