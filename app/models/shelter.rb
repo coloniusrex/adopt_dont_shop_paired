@@ -24,7 +24,8 @@ class Shelter < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)
+    return reviews.average(:rating) unless reviews.empty?
+    0
   end
 
   def total_applications

@@ -7,30 +7,33 @@
   <p>Address: <%= @shelter.address %></p>
   <p><%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip %></p>
 </section>
+<section class="shelter-stats">
+  <p>Number of pets: <%= @shelter.pet_count %></p>
+  <h2>|</h2>
+  <p>Avg Review Rating: <%= @shelter.average_rating.round(1) %></p>
+  <h2>|</h2>
+  <p>Total applications on file: <%= @shelter.total_applications %></p>
+</section>
 <section class="shelter-show-links">
   <a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a>
   <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete -%>
-
+  <%= link_to "Create Review", "/shelters/#{@shelter.id}/reviews/new" %>
 </section>
-<%= link_to "Create Review", "/shelters/#{@shelter.id}/reviews/new" %>
 <section class="reviews-list">
+
   <% @shelter.reviews.each do |review| %>
     <section id="review-<%= review.id %>">
-      <p><%= review.title %></p>
-      <p><%= review.rating %></p>
-      <p><%= review.content %></p>
-      <% unless review.image_url == nil %>
-        <%= image_tag review.image_url %>
-      <% end %>
+      <section class="review-info">
+        <p id="review-title"><%= review.title %> - Rating:<%= review.rating %></p>
+        <p><%= review.content %></p>
+        <% unless review.image_url == nil %>
+          <%= image_tag review.image_url %>
+        <% end %>
+      </section>
       <section class="review-links">
         <%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
         <%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/delete", method: :delete %>
       </section>
     </section>
   <% end %>
-</section>
-<section class="shelter-stats">
-  <p>Number of pets: <%= @shelter.pet_count %></p>
-  <p>Avg Review Rating: <%= @shelter.average_rating %></p>
-  <p>Total applications on file: <%= @shelter.total_applications %></p>
 </section>
