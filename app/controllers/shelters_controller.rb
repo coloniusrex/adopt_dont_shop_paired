@@ -15,7 +15,7 @@ class SheltersController < ApplicationController
     if shelter.save
       redirect_to '/shelters'
     else
-      flash[:error] = "Incomplete Submission: Please fill out #{missing_fields} to complete your form."
+      flash[:error] = "Incomplete Submission: Please fill out #{missing_fields(shelter_params)} to complete your form."
       redirect_to request.referer
     end
 

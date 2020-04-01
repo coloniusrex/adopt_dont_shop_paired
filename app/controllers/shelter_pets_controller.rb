@@ -10,15 +10,18 @@ class ShelterPetsController < ApplicationController
 
   def create
     shelter = Shelter.find(params[:shelter_id])
-    shelter.pets.create(shelter_pet_params)
-    redirect_to "/shelters/#{params[:shelter_id]}/pets"
+    pet = shelter.pets.new(pet_params)
+    if pet.save
+      redirect_to "/shelters/#{params[:shelter_id]}/pets"
+    else
+      flash[:error] = "Incomplete Submission: Please fill out #{missing_fields(pet_params)} to complete your form."
+      redirect_to request.referer
+    end
   end
 
   private
 
-  def shelter_pet_params
-    params[:adoptable] = true
-    params.permit(:image_url, :name, :description, :approximate_age,
-                           :sex, :adoptable)
+  def pet_params
+    params.permit(:image_url, :name, :description, :approximate_age, :sex)
   end
 end

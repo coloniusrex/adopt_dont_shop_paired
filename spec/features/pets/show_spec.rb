@@ -225,6 +225,7 @@ RSpec.describe "As a user", type: :feature do
         expect(page).to have_content('Favorites: 0')
       end
     end
-
   end
+  
+
 end

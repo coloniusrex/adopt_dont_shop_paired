@@ -12,8 +12,15 @@ class PetsController < ApplicationController
   end
 
   def update
-    Pet.update(params[:id], update_pet_params)
-    redirect_to "/pets/#{params[:id]}"
+    if Pet.update(params[:id], pet_params).valid?
+      Pet.update(params[:id], pet_params)
+      redirect_to "/pets/#{params[:id]}"
+    else
+      flash[:error] = "Incomplete Submission: Please fill out #{missing_fields(pet_params)} to complete your form."
+      redirect_to request.referer
+    end
+
+
   end
 
   def destroy
@@ -31,7 +38,7 @@ class PetsController < ApplicationController
 
   private
 
-  def update_pet_params
+  def pet_params
     params.permit(:image_url, :name, :description, :approximate_age, :sex)
   end
 end
