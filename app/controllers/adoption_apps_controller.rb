@@ -5,7 +5,7 @@ class AdoptionAppsController < ApplicationController
 
   def create
     adoption_app = AdoptionApp.new(adoption_app_params)
-    if adoption_app.save
+    if adoption_app.save && params[:selected_pet] != nil
       process_application_with_pets(adoption_app, params[:selected_pet])
       flash[:notice] = "Adoption Application Successfully Submitted"
       redirect_to "/favorites"
