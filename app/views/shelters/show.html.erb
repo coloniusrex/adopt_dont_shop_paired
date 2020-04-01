@@ -1,4 +1,4 @@
-<h1 id='title'><%= @shelter.name %></h1>
+<h1 id='title'><%= link_to @shelter.name, "/shelters/#{@shelter.id}" %></h1>
 <div class="shelters-pets-link">
   <%= link_to "Shelter's Pets", "/shelters/#{@shelter.id}/pets" %>
 </div>

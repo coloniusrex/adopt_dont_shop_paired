@@ -8,11 +8,11 @@
           <%= image_tag pet.image_url %>
         </div>
         <div class="pet-info">
-          <p><a href="/pets/<%= pet.id %>"><%= pet.name %></a></p>
+          <p><%=  link_to pet.name, "/pets/#{pet.id}" %></p>
           <p><%= pet.description %></p>
           <p><%= pet.approximate_age %></p>
           <p><%= pet.sex %></p>
-          <p>Current Shelter: <a href="/shelters/<%= pet.shelter.id %>"><%= pet.shelter.name %></a></p>
+          <p>Current Shelter: <%= link_to pet.shelter.name, "/shelters/#{pet.shelter.id}"%> </p>
         </div>
         <div class="pet-crud-links">
           <p><%= link_to "Update Pet", "/pets/#{pet.id}/edit" %></p>

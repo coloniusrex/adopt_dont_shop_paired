@@ -7,7 +7,7 @@
           <%= image_tag pet.image_url %>
         </div>
         <div class="pet-info">
-          <p><a href="/pets/<%= pet.id %>"><%= pet.name %></a></p>
+          <p><%= link_to pet.name, "/pets/#{pet.id}" %></p>
           <p><%= pet.description %></p>
           <p><%= pet.approximate_age %></p>
           <p><%= pet.sex %></p>

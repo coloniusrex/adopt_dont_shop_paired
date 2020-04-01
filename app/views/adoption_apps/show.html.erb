@@ -1,7 +1,7 @@
 <h1>Adoption Application Show Page</h1>
 
 <section class="app-info">
-  <p><%= @pet_app.name %></p>
+  <p><%= link_to @pet_app.name, "/adoption_apps/#{@pet_app.id}" %></p>
   <p><%= @pet_app.address %></p>
   <p><%= @pet_app.city %></p>
   <p><%= @pet_app.state %></p>
