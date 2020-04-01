@@ -172,6 +172,9 @@ h1{
 .input-field label{
   margin-left:10%;
 }
+.input-field textarea{
+  margin-left:30%;
+}
 
 /* pet show */
 .pet-show-container{
@@ -204,16 +207,16 @@ h1{
   display:inline;
   text-align:center;
 }
-.pet-show-links p{
+.pet-show-links p, .favorite-info p{
   display:block;
   margin-top:3em;
 }
-.pet-show-links a{
+.pet-show-links a, .favorite-info a{
   color:rgba(0, 0, 0, .4);
   font-size:25px;
   text-decoration:none;
 }
-.pet-show-links a:hover{
+.pet-show-links a:hover, .favorite-info a:hover{
   color:rgba(0, 0, 0, .7)
 }
 /* shelter index */
@@ -291,11 +294,11 @@ h1{
   text-decoration:none;
   margin-left:10%;
 }
-.shelters-pets-link a:hover, .review-links a:hover{
+.shelters-pets-link a:hover, .review-links a:hover, .favorites-links a:hover{
   color:rgba(0, 0, 0, .7);
   width: 100%;
 }
-.shelter-show-links, .review-links{
+.shelter-show-links, .review-links, .favorites-links{
   width:100%;
   height:4em;
   border-bottom: 1px solid rgba(0, 255, 255, .2);
@@ -339,4 +342,47 @@ h1{
 }
 .applicants-list p{
   font-size: 25px;
+}
+
+/* favorites index page */
+.list img{
+  width:auto;
+  height:100%;
+  border-radius: 15%;
+  float:right;
+  margin-right:10%;
+}
+.favorite-img, .favorite-info{
+  width: 48%;
+  display: inline;
+  float:left;
+  height: 30em;
+  margin:1%;
+}
+.favorite-info a{
+  display: block;
+  text-align: center;
+  padding-right:35%;
+}
+.pets-applied-for{
+  padding-left:1%
+}
+ .favorites-links a {
+   text-decoration: none;
+   color:rgba(0, 0, 0, .4);
+   margin-top:1em;
+   font-size:24px;
+ }
+ .favorites-selection{
+   margin-left:8%;
+   margin-bottom:20px;
+ }
+
+/* landing page */
+
+.landing-page{
+  height:850px;
+  background-image: url(https://www.coloradoanimalrescue.org/wp-content/uploads/2019/07/6769168-adorable-happy-dog-wallpaper-e1562706827803.jpg);
+  background-size: cover;
+
 }
