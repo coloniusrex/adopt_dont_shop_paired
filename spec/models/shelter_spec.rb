@@ -109,6 +109,9 @@ RSpec.describe Shelter, type: :model do
     it "can average all the review ratings for shelter" do
       shelter1 = Shelter.create(name:"Shelter Name", address:"123 S Whatever St",
                               city:"Centennial", state:"CO", zip:"80122")
+
+      expect(shelter1.average_rating.round(1)).to eql(0)
+
       review1 = shelter1.reviews.create(title: 'Title1', rating: 4, content: 'Content1')
       review2 = shelter1.reviews.create(title: 'Title2', rating: 5, content: 'Content2')
 
