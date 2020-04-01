@@ -185,4 +185,47 @@ RSpec.describe "As a user", type: :feature do
       expect(page).to have_content("#{pet_1.name} is pending adoption, on hold for #{application_2.name}")
     end
   end
+
+  it "I can delete a pet and expect that it is removed from favorites" do
+    shelter_1 = Shelter.create(name:    "Foothills Animal Shelter",
+                               address: "580 McIntyre St",
+                               city:    "Golden",
+                               state:   "CO",
+                               zip:     "80401")
+    pet_1 = shelter_1.pets.create(image_url:       "https://images.unsplash.com/photo-1538083156950-7ad24f318e7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                                   name:            "Charlie",
+                                   description:     "Yello Lab",
+                                   approximate_age: "6",
+                                   sex:             "Male",
+                                   adoptable:       true)
+    visit "/pets/#{pet_1.id}"
+
+    within('.navbar') do
+      within('.favorites-counter') do
+        expect(page).to have_content('Favorites: 0')
+      end
+    end
+
+    within('.pet-show-links') do
+      click_link 'Favorite Pet'
+    end
+
+    within('.navbar') do
+      within('.favorites-counter') do
+        expect(page).to have_content('Favorites: 1')
+      end
+    end
+
+    within('.pet-show-links') do
+      click_link 'Delete Pet'
+    end
+
+    within('.navbar') do
+      within('.favorites-counter') do
+        expect(page).to have_content('Favorites: 0')
+      end
+    end
+  end
+  
+
 end

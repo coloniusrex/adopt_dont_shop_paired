@@ -162,7 +162,7 @@ RSpec.describe "As a user on the shelters index page", type: :feature do
     expect(page).to have_content("Can not delete shelter. Pet adoption currently pending.")
   end
 
-  it "I can delete shelter as lon as all pets do not have approved applications" do
+  it "I can delete shelter as long as all pets do not have approved applications" do
     shelter1 = Shelter.create(name:"Foothills Animals", address:"123 S Whatever St", city:"Centennial", state:"CO", zip:"80122")
     pet1 = shelter1.pets.create(image_url:       "https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
                                 name:            "Moma",
