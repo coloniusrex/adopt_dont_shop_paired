@@ -5,7 +5,7 @@
       <% @favorite_pets.each do |pet| %>
         <section id="select-<%= pet.id %>">
           <%= check_box_tag "selected_pet[]", pet.id %>
-          <%= label_tag "selected_pet[]", pet.name %>
+          <%= link_to pet.name, "/pets/#{pet.id}" %>
         </section>
       <% end %>
     </section>

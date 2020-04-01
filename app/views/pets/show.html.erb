@@ -1,13 +1,13 @@
-<h1><%= @pet.name %></h1>
+<h1><%=  link_to @pet.name, "/pets/#{@pet.id}" %></h1>
 <section class="pet-show-container">
   <div class="pet-show-info">
     <p><%=  @pet.description %></p>
     <p><%=  @pet.approximate_age %></p>
     <p><%=  @pet.sex %></p>
     <% if @pet.adoptable %>
-      <p><%=  @pet.name %> is adoptable</p>
+      <p><%=  link_to @pet.name, "/pets/#{@pet.id}" %> is adoptable</p>
     <% else %>
-      <p> <%= @pet.name %> is pending adoption, on hold for <%= @pet.approved_applicant_name %></p>
+      <p> <%=  link_to @pet.name, "/pets/#{@pet.id}" %> is pending adoption, on hold for <%= link_to @pet.approved_applicant_name, "/adoption_apps/#{@pet.approved_application_id}" %></p>
     <% end %>
   </div>
   <div class="pet-show-links">

@@ -50,11 +50,11 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
 
     within('.favorites-selection') do
       within("#select-#{@pet_2.id}") do
-        check "Jenkyl"
+        check "selected_pet[]"
       end
 
       within("#select-#{@pet_3.id}") do
-        check "Amara"
+        check "selected_pet[]"
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe "As a visitor on the new adoption apps page", type: :feature do
     visit '/adoption_apps/new'
 
     within("#select-#{@pet_2.id}") do
-      check "Jenkyl"
+      check "selected_pet[]"
     end
 
     within('.adoption-info') do
