@@ -3,9 +3,9 @@
 <section class="app-info">
   <p><%= link_to @pet_app.name, "/adoption_apps/#{@pet_app.id}" %></p>
   <p><%= @pet_app.address %></p>
-  <p><%= @pet_app.city %></p>
-  <p><%= @pet_app.state %></p>
-  <p><%= @pet_app.zip %></p>
+  <p><%= @pet_app.city %>, <%= @pet_app.state %> <%= @pet_app.zip %></p>
+  <p></p>
+  <p></p>
   <p><%= @pet_app.phone_number %></p>
   <p><%= @pet_app.description %></p>
 </section>

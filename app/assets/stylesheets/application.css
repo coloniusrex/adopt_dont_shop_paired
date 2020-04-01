@@ -277,12 +277,12 @@ h1{
 }
 
 /* shelter show page */
-.shelter-show-address {
+.shelter-show-address, .app-info {
   text-align: center;
   font-size:28px;
   margin-bottom:1em;
 }
-.shelter-show-address p{
+.shelter-show-address p, .app-info p{
   margin:5px 0px;
 }
 .shelters-pets-link{
@@ -384,5 +384,10 @@ h1{
   height:850px;
   background-image: url(https://www.coloradoanimalrescue.org/wp-content/uploads/2019/07/6769168-adorable-happy-dog-wallpaper-e1562706827803.jpg);
   background-size: cover;
+}
 
+/* app show page */
+
+.app-pet-list{
+  text-align:center;
 }
