@@ -22,8 +22,20 @@ body {
 }
 a{
   font-weight: lighter;
+  text-decoration: none;
+  font-size:1.1em;
+  color: blue;
 }
-
+h1{
+  width:auto;
+  text-align:center;
+  font-size:3em;
+  color:black;
+}
+/* flash message */
+.flash-message{
+  padding-left:10%
+}
 /* navbar */
 .navbar{
   height:100px;
@@ -32,7 +44,7 @@ a{
  }
 #main-title{
   margin-top:.75em;
-  margin-left: 5%;
+  margin-left: 2%;
   display:inline-block;
   color:rgba(0, 0, 120, .6);
   text-decoration:underline;
@@ -45,6 +57,9 @@ a{
   margin-right:5%;
   font-size:24px;
   padding-top:1.2em;
+}
+.nav-links .favorites-counter{
+  display:inline
 }
 .navbar a{
   text-decoration: none;
@@ -59,11 +74,7 @@ a{
 
 /* pets index
     shelter pets index*/
-h1{
-  width:auto;
-  text-align:center;
-  font-size:3em;
-}
+
 
 .pet-container{
   height:20em;
@@ -280,17 +291,17 @@ h1{
   text-decoration:none;
   margin-left:10%;
 }
-.shelters-pets-link a:hover{
+.shelters-pets-link a:hover, .review-links a:hover{
   color:rgba(0, 0, 0, .7);
   width: 100%;
 }
-.shelter-show-links{
+.shelter-show-links, .review-links{
   width:100%;
   height:4em;
   border-bottom: 1px solid rgba(0, 255, 255, .2);
   text-align:center;
 }
-.shelter-show-links a{
+.shelter-show-links a, .review-links a{
   text-decoration: none;
   color:rgba(0, 0, 0, .4);
   margin-top:1em;
@@ -299,4 +310,33 @@ h1{
 }
 .shelter-show-links a:hover{
   color:rgba(0, 0, 0, .7)
+}
+.shelter-stats{
+  text-align: center;
+  margin-bottom: 15px;
+}
+.shelter-stats p, h2{
+  display: inline;
+  color:rgba(0, 0, 0, .6);
+  overflow-wrap: break-word;
+}
+.review-info{
+  padding-left:20%;
+  padding-right:20%;
+}
+#review-title{
+  text-align: center;
+  font-size:20px;
+  text-decoration: underline;
+}
+
+/* pet adoption apps index */
+.applicants-list{
+  text-align:center;
+}
+#pet-adoption-app-title{
+  color:black;
+}
+.applicants-list p{
+  font-size: 25px;
 }

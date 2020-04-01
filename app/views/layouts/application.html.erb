@@ -15,14 +15,22 @@
       <%= link_to "Pets Index", "/pets" %>
       |
       <%= link_to "Shelters Index", "/shelters" %>
+      |
+      <section class="favorites-counter">
+        <%= link_to "Favorites: #{favorites_list.pets_total}", '/favorites' %>
+      </section>
     </div>
-    <section class="favorites-counter">
-      <%= link_to "Favorites: #{favorites_list.pets_total}", '/favorites' %>
-    </section>
   </div>
-  <% flash.each do |type, message| %>
-      <h1 style="color:red"><%= message %></h1>
-  <% end %>
+    <section class="flash-message">
+      <% flash.each do |type, message| %>
+        <% if type == "error" %>
+          <h2 style="color:red"><%= message %></h2>
+        <% else %>
+          <h2 style="color:green"><%= message %></h2>
+        <% end %>
+      <% end %>
+    </section>
+
     <%= yield %>
   </body>
 </html>

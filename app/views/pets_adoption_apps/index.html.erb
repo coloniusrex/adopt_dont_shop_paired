@@ -4,8 +4,9 @@
   </section>
 <% else %>
   <section class="applicants-list">
+    <h1 id="pet-adoption-app-title"><%=  link_to @pet.name, "/pets/#{@pet.id}" %>'s Adoption Apps</h1>
     <% @pet.adoption_apps.each do |app| %>
-    <%= link_to app.name, "/adoption_apps/#{app.id}" %>
+    <p>-<%= link_to app.name, "/adoption_apps/#{app.id}" %>-</p>
     <% end %>
   </section>
 <% end %>
